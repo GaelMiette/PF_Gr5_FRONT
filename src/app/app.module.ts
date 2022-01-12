@@ -11,6 +11,8 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { AdsComponent } from './ads/ads.component';
+import { LittleAdComponent } from './little-ad/little-ad.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { RegisterComponent } from './register/register.component';
     NavbarComponent,
     AccueilComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdsComponent,
+    LittleAdComponent
   ],
   imports: [
     BrowserModule,
