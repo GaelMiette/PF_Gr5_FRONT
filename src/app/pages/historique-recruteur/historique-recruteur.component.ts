@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-historique-candidat',
-  templateUrl: './historique-candidat.component.html',
-  styleUrls: ['./historique-candidat.component.css']
+  selector: 'app-historique-recruteur',
+  templateUrl: './historique-recruteur.component.html',
+  styleUrls: ['./historique-recruteur.component.css']
 })
-export class HistoriqueCandidatComponent implements OnInit {
+export class HistoriqueRecruteurComponent implements OnInit {
 
   liste = []
 
@@ -18,7 +18,6 @@ export class HistoriqueCandidatComponent implements OnInit {
   }
 
   get_liste(){
-
     this.liste = [
 
       {
@@ -76,12 +75,11 @@ export class HistoriqueCandidatComponent implements OnInit {
       },
     
     ]
-  
   }
 
   delete_annonce(id:number){
     alert("bouh")
-    // appel api pour supprimer une annonce associée au candidat et récupérer la nouvelle liste
+    // appel api pour supprimer une annonce au global et récupérer la nouvelle liste
   }
 
 }

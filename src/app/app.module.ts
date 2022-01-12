@@ -8,6 +8,8 @@ import { HistoriqueCandidatComponent } from './pages/historique-candidat/histori
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { EspacecandidatComponent } from './pages/espacecandidat/espacecandidat.component';
 import { EspacerecruteurComponent } from './pages/espacerecruteur/espacerecruteur.component';
+import { HistoriqueRecruteurComponent } from './pages/historique-recruteur/historique-recruteur.component';
+import { FormAnnonceComponent } from './pages/form-annonce/form-annonce.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { EspacerecruteurComponent } from './pages/espacerecruteur/espacerecruteu
     AccueilComponent,
     EspacecandidatComponent,
     EspacerecruteurComponent,
+    HistoriqueRecruteurComponent,
+    FormAnnonceComponent,
   ],
   imports: [
     BrowserModule,
