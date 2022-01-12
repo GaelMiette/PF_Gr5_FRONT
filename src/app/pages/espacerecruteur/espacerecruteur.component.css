@@ -59,9 +59,6 @@ h6 {
 
 
 
-
-
-
 .form-control:focus {
     box-shadow: none;
     border-color: blue
@@ -69,4 +66,15 @@ h6 {
 
 .labels {
     font-size: 11px
+}
+
+
+.test{
+    border:1px solid black;
+    
+}
+
+.center{
+    align-items:  center;
+    justify-content: center;
 }

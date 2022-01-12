@@ -12,9 +12,9 @@ const routes: Routes = [
   {path: "historique_candidat", component: HistoriqueCandidatComponent},
   {path: "historique_recruteur", component: HistoriqueRecruteurComponent},
   {path: "form_annonce", component: FormAnnonceComponent},
-  {path:"accueil", component: AccueilComponent},
-  {path:"espc", component: EspacecandidatComponent},
-  {path:"espr", component: EspacerecruteurComponent},
+  {path: "accueil", component: AccueilComponent},
+  {path: "espc", component: EspacecandidatComponent},
+  {path: "espr", component: EspacerecruteurComponent},
 
 ];
 

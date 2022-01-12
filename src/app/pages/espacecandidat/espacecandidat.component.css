@@ -67,3 +67,13 @@ h6 {
 .labels {
     font-size: 11px
 }
+
+.test{
+    border:1px solid black;
+    
+}
+
+.center{
+    align-items:  center;
+    justify-content: center;
+}
