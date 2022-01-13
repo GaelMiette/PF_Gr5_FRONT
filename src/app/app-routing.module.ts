@@ -6,12 +6,14 @@ import { EspacerecruteurComponent } from './pages/espacerecruteur/espacerecruteu
 import { FormAnnonceComponent } from './pages/form-annonce/form-annonce.component';
 import { HistoriqueCandidatComponent } from './pages/historique-candidat/historique-candidat.component';
 import { HistoriqueRecruteurComponent } from './pages/historique-recruteur/historique-recruteur.component';
+import { UpdateAnnonceComponent } from './pages/update-annonce/update-annonce.component';
 
 const routes: Routes = [
   {path: '', redirectTo: "/accueil", pathMatch: "full" },
   {path: "historique_candidat", component: HistoriqueCandidatComponent},
   {path: "historique_recruteur", component: HistoriqueRecruteurComponent},
   {path: "form_annonce", component: FormAnnonceComponent},
+  {path: "update_annonce", component: UpdateAnnonceComponent},
   {path: "accueil", component: AccueilComponent},
   {path: "espc", component: EspacecandidatComponent},
   {path: "espr", component: EspacerecruteurComponent},

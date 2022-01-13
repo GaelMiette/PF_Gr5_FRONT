@@ -10,6 +10,7 @@ import { EspacecandidatComponent } from './pages/espacecandidat/espacecandidat.c
 import { EspacerecruteurComponent } from './pages/espacerecruteur/espacerecruteur.component';
 import { HistoriqueRecruteurComponent } from './pages/historique-recruteur/historique-recruteur.component';
 import { FormAnnonceComponent } from './pages/form-annonce/form-annonce.component';
+import { UpdateAnnonceComponent } from './pages/update-annonce/update-annonce.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormAnnonceComponent } from './pages/form-annonce/form-annonce.componen
     EspacerecruteurComponent,
     HistoriqueRecruteurComponent,
     FormAnnonceComponent,
+    UpdateAnnonceComponent,
   ],
   imports: [
     BrowserModule,
