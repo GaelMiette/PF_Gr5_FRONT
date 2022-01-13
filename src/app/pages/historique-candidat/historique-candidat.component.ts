@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoriqueCandidatComponent implements OnInit {
 
-  liste = []
+  liste = [];
+  message;
 
   user = {isRecruiter: false}
 
-  constructor() { }
+  constructor(private http:HttpClient ) { }
 
   ngOnInit(): void {
     this.get_liste();
@@ -79,8 +81,19 @@ export class HistoriqueCandidatComponent implements OnInit {
   
   }
 
-  delete_annonce(id:number){
+  delete_annonce(){
     alert("bouh")
+
+    /* this.http.delete("http://localhost:8080/danavalley/api/candidat/").
+    subscribe(
+      response => {
+        this.message = "article supprimé";
+        this.ngOnInit();
+      }, err=>{
+        console.log(err);
+      }
+      
+    ); */
     // appel api pour supprimer une annonce associée au candidat et récupérer la nouvelle liste
   }
 

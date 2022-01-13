@@ -34,7 +34,7 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <button (click)="display_form(true)" class="btn btn-primary">modifier</button>
+                                    <button (click)="toggle_display()" class="btn btn-primary">modifier</button>
                                 </div>
 
                             </div>
@@ -69,7 +69,7 @@
                     <div class="col-md-6"><label class="labels">Département</label><input type="text" class="form-control" [(ngModel)]="user.departement"></div>
                 </div>
                 
-                <div class="row mt-5 center"><button (click)="display_form(false)" class="btn btn-primary" type="button">valider</button></div>
+                <div class="row mt-5 center"><button (click)="update()" class="btn btn-primary" type="button">valider</button></div>
                 
             </div>
                 

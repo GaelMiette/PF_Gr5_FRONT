@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   espace : boolean=true;
+  message;
 
   candidate: any = {
     name : "",
@@ -33,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
     isRecruiter:true}
 
-  constructor(private router:Router) { }
+  constructor(private router:Router , private http : HttpClient) { }
 
   ngOnInit(): void {
    // document.getElementById("esp_rec").style.display='none';
@@ -55,6 +57,27 @@ export class RegisterComponent implements OnInit {
     document.getElementById("form_rec").style.visibility='hidden';
   }
 }
+
+
+register_candidate(){
+
+  const body = JSON.stringify(this.candidate);
+
+    this.http.post("http://localhost:8080/danavalley/api/candidats", body, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    }).
+      subscribe(response => {
+        console.log("crud service post OK");
+        this.message="article créé"
+      },
+        err => {
+          console.log("crud service post KO")
+          this.message="erreur article"
+        });
+}
+
 
   register(isRecruiter: boolean){
 

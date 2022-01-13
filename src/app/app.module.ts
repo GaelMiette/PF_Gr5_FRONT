@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { LoginComponent } from './login/login.component';
 import { HistoriqueCandidatComponent } from './pages/historique-candidat/historique-candidat.component';
@@ -26,7 +25,6 @@ import { LittleAdComponent } from './little-ad/little-ad.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    NavbarComponent,
     AccueilComponent,
     LoginComponent,
     AdsComponent,
