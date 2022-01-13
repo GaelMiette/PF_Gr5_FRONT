@@ -5,17 +5,53 @@
         <h3 >Votre avenir numérique au format légendaire.</h3>
     </span>
 </div>
+
 <nav class="navbar navbar-expand-sm bg-light sticky-top justify-content-around rounded">
-        <button class="btn btn-outline-dark" style="font-size:20px" href="home">Accueil</button>
-        <button class="btn btn-outline-dark" style="font-size:20px" href="ads">Consulter les annonces</button>
-        <div class="dropdown">
-            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
-             S'inscrire/ Se connecter
+
+    <button class="btn btn-outline-dark" style="font-size:20px" [routerLink]="['/home']">Accueil</button>
+
+    <button class="btn btn-outline-dark" style="font-size:20px" [routerLink]="['/ads']">Consulter les annonces</button>
+
+    <div *ngIf="user != null">
+        
+        <div class="dropdown" *ngIf="user.isRecruiter">
+            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" style="font-size:20px">
+                actions
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="register"><button class="btn btn-outline-light text-dark">S'inscrire</button></a>
-              <a class="dropdown-item" href="login"><button class="btn btn-outline-light text-dark">Se connecter</button></a>
+                <a class="dropdown-item" [routerLink]="['/espr']">mon espace</a>
+                <a class="dropdown-item" [routerLink]="['/form_annonce']">créer une annonce</a>
+                <a class="dropdown-item" [routerLink]="['/historique_recruteur']">mes annonces</a>
             </div>
-</div>
+        </div>
+
+        <div class="dropdown" *ngIf="user.isRecruiter == 0">
+            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" style="font-size:20px">
+                actions
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" [routerLink]="['/espc']">mon espace</a>
+                <a class="dropdown-item" [routerLink]="['/historique_candidat']">mes candidatures</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="user == null">
+        <div class="dropdown">
+            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" style="font-size:20px">
+                S'inscrire/ Se connecter
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" [routerLink]="['/register']"><button class="btn btn-outline-light text-dark">S'inscrire</button></a>
+                <a class="dropdown-item" [routerLink]="['/login']"><button class="btn btn-outline-light text-dark">Se connecter</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="user != null">
+        <button type="button" class="btn btn-outline-dark" style="font-size:20px" (click)="logout()">déconnexion</button>
+    </div>
+
 </nav>
 

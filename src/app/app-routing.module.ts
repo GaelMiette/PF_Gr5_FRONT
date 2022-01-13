@@ -20,11 +20,11 @@ const routes: Routes = [
   {path: "update_annonce", component: UpdateAnnonceComponent},
   {path: "espc", component: EspacecandidatComponent},
   {path: "espr", component: EspacerecruteurComponent},
-  {path:"home" , component : AccueilComponent},
-  {path:"login" , component : LoginComponent},
-  {path:"register" , component : RegisterComponent},
-  {path:"ad" , component : LittleAdComponent},
-  {path:"ads" , component : AdsComponent}
+  {path: "home" , component : AccueilComponent},
+  {path: "login" , component : LoginComponent},
+  {path: "register" , component : RegisterComponent},
+  {path: "ad" , component : LittleAdComponent},
+  {path: "ads" , component : AdsComponent}
 ];
 
 @NgModule({
