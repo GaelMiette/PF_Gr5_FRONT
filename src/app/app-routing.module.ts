@@ -7,6 +7,8 @@ import { HistoriqueCandidatComponent } from './pages/historique-candidat/histori
 import { HistoriqueRecruteurComponent } from './pages/historique-recruteur/historique-recruteur.component';
 import { UpdateAnnonceComponent } from './pages/update-annonce/update-annonce.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AdsComponent } from './ads/ads.component';
+import { LittleAdComponent } from './little-ad/little-ad.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -20,7 +22,9 @@ const routes: Routes = [
   {path: "espr", component: EspacerecruteurComponent},
   {path:"home" , component : AccueilComponent},
   {path:"login" , component : LoginComponent},
-  {path:"register" , component : RegisterComponent}
+  {path:"register" , component : RegisterComponent},
+  {path:"ad" , component : LittleAdComponent},
+  {path:"ads" , component : AdsComponent}
 ];
 
 @NgModule({

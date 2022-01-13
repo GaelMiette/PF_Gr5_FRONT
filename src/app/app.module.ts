@@ -18,18 +18,21 @@ import { FormAnnonceComponent } from './pages/form-annonce/form-annonce.componen
 import { UpdateAnnonceComponent } from './pages/update-annonce/update-annonce.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { AdsComponent } from './ads/ads.component';
+import { LittleAdComponent } from './little-ad/little-ad.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
     AccueilComponent,
     LoginComponent,
-    RegisterComponent
-     HistoriqueCandidatComponent,
+    AdsComponent,
+    LittleAdComponent,
+    RegisterComponent,
+    HistoriqueCandidatComponent,
     EspacecandidatComponent,
     EspacerecruteurComponent,
     HistoriqueRecruteurComponent,
