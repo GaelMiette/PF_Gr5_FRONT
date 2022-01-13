@@ -10,8 +10,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private route: Router ) { }
 
-  user: any = {mail: "", pwd: "", isRecruiter:true}
-  // user = null
+  // user: any = {mail: "", pwd: "", isRecruiter:true}
+  user = null
 
   ngOnInit(): void {
   }

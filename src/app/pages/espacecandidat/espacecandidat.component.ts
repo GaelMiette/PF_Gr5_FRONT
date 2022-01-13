@@ -8,23 +8,26 @@ import { Component, OnInit } from '@angular/core';
 export class EspacecandidatComponent implements OnInit {
 
   shouldShow = false;
-  user = {
+  
+  // user = {
 
-    nom: "sparrow", 
-    prenom: "jack", 
-    age: 35,
-    mail: "blackpearl@bouh.fr",
+  //   nom: "sparrow", 
+  //   prenom: "jack", 
+  //   age: 35,
+  //   mail: "blackpearl@bouh.fr",
     
-    profession: "pirate",
-    experience: 20,
-    departement: "bouh",
-  }
+  //   profession: "pirate",
+  //   experience: 20,
+  //   departement: "bouh",
+  // }
+
+  user = null;
 
   constructor() { }
 
   ngOnInit(): void {
-    // récupérer le user depuis le session storage
-    // le session storage est créé depuis le login
+    this.user = JSON.parse(sessionStorage.getItem("user"));
+    console.log(this.user);
   }
 
   display_form(should){

@@ -1,5 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Recruiter } from '../shared/recruiter';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +11,9 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   espace : boolean=true;
+  BASE_URL = "http://localhost:8080/danavalley/recruteur";
+  recruiter = new Recruiter();
+  departements: any;
 
   candidate: any = {
     name : "",
@@ -19,25 +24,33 @@ export class RegisterComponent implements OnInit {
     dept:22,
     mail: "", 
     pwd: "", 
-    isRecruiter:false}
+    isRecruiter:false
+  }
 
-  recruiter: any = {
-    entreprise :"",
-    mail: "", 
-    pwd: "", 
-    logo :"",
-    name :"",
-    surname :"",
-    login:"",
-    dept:0,
+  // recruiter: any = {
+  //   login:"",
+  //   logo :"",
+  //   mail: "",
+  //   mdp: "",
+  //   nom :"",
+  //   prenom :"",
+  //   nom_entreprise :"",
+  //   departement:{},
 
-    isRecruiter:true}
+  //   isRecruiter:true
+  // }
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private http:HttpClient) { }
 
   ngOnInit(): void {
    // document.getElementById("esp_rec").style.display='none';
     document.getElementById("form_rec").style.visibility='hidden';
+
+    this.http.get(this.BASE_URL + "/departements").subscribe(
+      response=>{
+        this.departements = response;
+      }
+    )
   }
 
   toggle(){
@@ -64,15 +77,39 @@ export class RegisterComponent implements OnInit {
       user = this.recruiter;
     }
 
-    // vérification bdd
-    let isRegistered: boolean = true;
+    user.departement_id = parseInt(user.departement_id)
+    let departement = null;
     
-    if(isRegistered){
-      delete user.pwd;
-      let toStore = JSON.stringify(user);
-      sessionStorage.setItem("user", toStore);
-      this.router.navigate(["/accueil"]);
+
+    console.log(user);
+
+    // vérification bdd
+    let isRegistered: boolean = false;
+
+    this.http.get<Recruiter>(this.BASE_URL + "/recruteurs/bymail/" + user.mail).subscribe(
+      response=>{
+        if(response != null){
+          isRegistered = true
+        }
+      }
+    )
+
+    if(!isRegistered){
+      this.http.post(
+        this.BASE_URL + "/recruteurs",
+        JSON.stringify(user),
+        {headers: new HttpHeaders({"Content-Type": "application/json"})}
+
+      ).subscribe()
     }
+
+    
+    // if(isRegistered){
+    //   delete user.pwd;
+    //   let toStore = JSON.stringify(user);
+    //   sessionStorage.setItem("user", toStore);
+    //   this.router.navigate(["/accueil"]);
+    // }
   }
 
 }
