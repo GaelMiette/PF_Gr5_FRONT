@@ -19,9 +19,6 @@ export class RegisterComponent implements OnInit {
   candidate= new Candidate();
   departements: any;
 
-
-  
-
   constructor(private router:Router, private http:HttpClient) { }
 
 
@@ -87,54 +84,64 @@ export class RegisterComponent implements OnInit {
       },
 
       error =>{
-        alert("erreur")
+        alert("erreur pendant l'enregistrement de l'utilisateur")
       }
       
     )
     window.location.reload();
   }
 
-  // pour toi gael !
-  registerCandidate(){
-    let user = this.find_departement(this.candidate);
-    user.isRecruiter = false;
-
-    // vérification bdd si le mail existe déjà
-    this.http.get<Candidate>(this.BASE_URL + "/candidatsmail/" + user.mail).subscribe(
-      
-      async response => {
-        if(response == null){
-          // si la réponse vaut null, c'est qu'aucun recruteur avec ce mail n'existe, on le créé
-          this.send_to_db("/candidats", user);
-        }
-      }
-
-    )
-
-  }
-
-  registerRecruiter(){
-    
-    let user = this.find_departement(this.recruiter);
-    user.isRecruiter = true;
-    // user.id = 1;
-
-    // vérification bdd si le mail existe déjà
-    this.http.get<Recruiter>(this.BASE_URL + "/recruteursmail/" + user.mail).subscribe(
-      
-      async response => {
-        if(response == null){
-          // si la réponse vaut null, c'est qu'aucun recruteur avec ce mail n'existe, on le créé
-          this.send_to_db("/recruteurs", user);
-        }
-      }
-
-    )
-  }
-
   register(isRecruiter: boolean){
 
-    isRecruiter ? this.registerRecruiter() : this.registerCandidate();
+    let users = {
+
+      "recruiter": {
+        data: this.recruiter,
+        func: (input) => this.http.get<Recruiter>(this.BASE_URL + input.endpoint_exists + input.data.mail),
+        endpoint_exists: "/recruteursmail/",
+        endpoint_post: "/recruteurs",
+        isRecruiter: true
+      },
+
+      "candidate": {
+        data: this.candidate,
+        func: (input) => this.http.get<Candidate>(this.BASE_URL + input.endpoint_exists + input.data.mail),
+        endpoint_exists: "/candidatsmail/",
+        endpoint_post: "/candidats",
+        isRecruiter: false
+      }
+
+    }
+
+    let key  = isRecruiter ? "recruiter" : "candidate";
+    let user = users[key];
+
+    user.data = this.find_departement(user.data);
+    user.data.isRecruiter = user.isRecruiter;
+
+    console.log("user to store : ", user)
+
+    user.func(user).subscribe(
+      
+      response => {
+        
+        if(response == null || response.length == 0){
+          // si la réponse vaut null, c'est qu'aucun recruteur avec ce mail n'existe, on le créé
+          this.send_to_db(user.endpoint_post, user.data);
+          console.log("n'existe pas")
+        }else{
+          console.log("existe déjà")
+        }
+
+      },
+
+      error =>{
+        alert("erreur")
+        console.log("erreur pendant la vérification de l'existance de l'utilisateur : ", error)
+      }
+
+    )
+    
   }
 
 }

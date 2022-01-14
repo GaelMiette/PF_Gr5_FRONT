@@ -47,32 +47,18 @@
                 <label>Age :</label>
                 <input type="number" class="form-control" placeholder="Age" [(ngModel)]="candidate.age" name="age_candidate" />
             </div>
+            
             <label>Département :</label><br>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" value="22" [(ngModel)]="candidate.departement_id" name="optradio_c">Côtes d'Armor - 22
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" value="29" [(ngModel)]="candidate.departement_id" name="optradio_c">Finistère - 29
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" value="35" [(ngModel)]="candidate.departement_id" name="optradio_c">Ille et Vilaine - 35
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" value="56" [(ngModel)]="candidate.departement_id" name="optradio_c">Morbihan - 56
-                </label>
-              </div>
+            <div class="form-check" *ngFor="let dept of departements">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="{{dept.id}}" [(ngModel)]="candidate.departement_id" name="optradio_c">{{dept.nom}} - {{dept.id}}
+              </label>
+            </div>
 
 
             <div class="form-group">
 
-                <button (click)="registerCandidate()" class="btn btn-outline-dark" style="margin-top:30px">S'inscrire</button>
+                <button (click)="register(false)" class="btn btn-outline-dark" style="margin-top:30px">S'inscrire</button>
             </div>
 
         </div>
@@ -114,36 +100,12 @@
                 <input type="password" class="form-control" placeholder="mot de passe" [(ngModel)]="recruiter.mdp" name="pwd_recruiter" />
             </div>
             
-            
             <label>Département :</label><br>
-              <div class="form-check">
-                <label class="form-check-label">
-
-                  <input type="radio" class="form-check-input" value="22" [(ngModel)]="recruiter.departement_id" name="optradio_r">Côtes d'Armor - 22
-
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-
-                  <input type="radio" class="form-check-input" value="29" [(ngModel)]="recruiter.departement_id" name="optradio_r">Finistère - 29
-
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-
-                  <input type="radio" class="form-check-input" value="35" [(ngModel)]="recruiter.departement_id" name="optradio_r">Ille et Vilaine - 35
-
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-
-                  <input type="radio" class="form-check-input" value="56" [(ngModel)]="recruiter.departement_id" name="optradio_r">Morbihan - 56
-
-                </label>
-              </div>
+            <div class="form-check" *ngFor="let dept of departements">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="{{dept.id}}" [(ngModel)]="recruiter.departement_id" name="optradio_r">{{dept.nom}} - {{dept.id}}
+              </label>
+            </div>
 
               
 
@@ -156,3 +118,4 @@
 
     </div>
 </div>
+
