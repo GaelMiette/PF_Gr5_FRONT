@@ -15,15 +15,15 @@
             
             <div class="form-group">
                 <label>Nom :</label>
-                <input type="text" class="form-control" placeholder="nom" [(ngModel)]="candidate.name" name="name_candidate" />
+                <input type="text" class="form-control" placeholder="nom" [(ngModel)]="candidate.nom" name="name_candidate" />
             </div>
             <div class="form-group">
                 <label>Prénom :</label>
-                <input type="text" class="form-control" placeholder="prenom" [(ngModel)]="candidate.surname" name="surname_candidate" />
+                <input type="text" class="form-control" placeholder="prenom" [(ngModel)]="candidate.prenom" name="surname_candidate" />
             </div>
             <div class="form-group">
                 <label>Mot de passe :</label>
-                <input type="password" class="form-control" placeholder="password" [(ngModel)]="candidate.pwd" name="pwd_candidate" />
+                <input type="password" class="form-control" placeholder="password" [(ngModel)]="candidate.mdp" name="pwd_candidate" />
             </div>
             <div class="form-group">
                 <label>Mail :</label>
@@ -41,7 +41,7 @@
             </div>
               <div class="form-group">
                   <label>Votre expérience :</label>
-                <input type="number" class="form-control" placeholder="années d'expérience" [(ngModel)]="candidate.exp" name="exp_candidate" />
+                <input type="number" class="form-control" placeholder="années d'expérience" [(ngModel)]="candidate.anneesxp" name="exp_candidate" />
             </div>
             <div class="form-group">
                 <label>Age :</label>
@@ -50,28 +50,28 @@
             <label>Département :</label><br>
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" value="22" [(ngModel)]="candidate.dept" name="optradio_c">Côtes d'Armor - 22
+                  <input type="radio" class="form-check-input" value="22" [(ngModel)]="candidate.departement_id" name="optradio_c">Côtes d'Armor - 22
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" value="29" [(ngModel)]="candidate.dept" name="optradio_c">Finistère - 29
+                  <input type="radio" class="form-check-input" value="29" [(ngModel)]="candidate.departement_id" name="optradio_c">Finistère - 29
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" value="35" [(ngModel)]="candidate.dept" name="optradio_c">Ille et Vilaine - 35
+                  <input type="radio" class="form-check-input" value="35" [(ngModel)]="candidate.departement_id" name="optradio_c">Ille et Vilaine - 35
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" value="56" [(ngModel)]="candidate.dept" name="optradio_c">Morbihan - 56
+                  <input type="radio" class="form-check-input" value="56" [(ngModel)]="candidate.departement_id" name="optradio_c">Morbihan - 56
                 </label>
               </div>
 
 
             <div class="form-group">
-                <button (click)="register_candidate()" class="btn btn-outline-dark" style="margin-top:30px">S'inscrire</button>
+                <button (click)="register(false)" class="btn btn-outline-dark" style="margin-top:30px">S'inscrire</button>
             </div>
 
         </div>
@@ -118,28 +118,28 @@
               <div class="form-check">
                 <label class="form-check-label">
 
-                  <input type="radio" class="form-check-input" value="22" [(ngModel)]="recruiter.dept" name="optradio_r">Côtes d'Armor - 22
+                  <input type="radio" class="form-check-input" value="22" [(ngModel)]="recruiter.departement_id" name="optradio_r">Côtes d'Armor - 22
 
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
 
-                  <input type="radio" class="form-check-input" value="29" [(ngModel)]="recruiter.dept" name="optradio_r">Finistère - 29
+                  <input type="radio" class="form-check-input" value="29" [(ngModel)]="recruiter.departement_id" name="optradio_r">Finistère - 29
 
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
 
-                  <input type="radio" class="form-check-input" value="35" [(ngModel)]="recruiter.dept" name="optradio_r">Ille et Vilaine - 35
+                  <input type="radio" class="form-check-input" value="35" [(ngModel)]="recruiter.departement_id" name="optradio_r">Ille et Vilaine - 35
 
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
 
-                  <input type="radio" class="form-check-input" value="56" [(ngModel)]="recruiter.dept" name="optradio_r">Morbihan - 56
+                  <input type="radio" class="form-check-input" value="56" [(ngModel)]="recruiter.departement_id" name="optradio_r">Morbihan - 56
 
                 </label>
               </div>
