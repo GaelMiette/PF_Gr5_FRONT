@@ -1,0 +1,79 @@
+.padding {
+    padding: 3rem !important
+}
+
+.bg-c-lite-green {
+    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+    background: linear-gradient(to right, #ee5a6f, #f29263)
+}
+
+.user-profile {
+    padding: 20px 0
+}
+
+h6 {
+    font-size: 14px
+}
+
+.card-block {
+    padding: 1.25rem
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0
+}
+
+.m-b-20 {
+    margin-bottom: 20px
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important
+}
+
+.card .card-block p {
+    line-height: 25px
+}
+
+.m-b-10 {
+    margin-bottom: 10px
+}
+
+.text-muted {
+    color: #919aa3 !important
+}
+
+.f-w-600 {
+    font-weight: 600
+}
+
+.m-t-40 {
+    margin-top: 20px
+}
+
+
+
+
+
+
+
+
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: blue
+}
+
+.labels {
+    font-size: 11px
+}
+
+.test{
+    border:1px solid black;
+    
+}
+
+.center{
+    align-items:  center;
+    justify-content: center;
+}

@@ -1,0 +1,13 @@
+.test{
+    border: 1px solid black;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.wrapped{
+    flex: 1;
+}

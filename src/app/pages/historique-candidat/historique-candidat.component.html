@@ -1,0 +1,25 @@
+<div class="container">
+      
+    <h4 class="text-muted">Missions auxquelles j'ai postulé</h4> 
+    
+    <ul class="list-group">
+      
+      <a *ngFor="let annonce of liste" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        
+        <div class="flex-column">
+          {{annonce.titre}}, {{annonce.recruteur.entreprise}}
+          <p><small>{{annonce.date}} - {{annonce.categorie}}</small></p>
+          <button class="btn btn-danger" (click)="delete_annonce()">retirer</button>
+        </div>
+        
+        <div class="image-parent">
+          <img src={{annonce.recruteur.logo}} class="img-fluid" alt="lay">
+        </div>
+
+      </a>
+
+    </ul>
+
+
+    
+</div>

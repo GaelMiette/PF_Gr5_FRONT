@@ -60,7 +60,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(isRecruiter: boolean){
+    console.log(sessionStorage);
     isRecruiter ? this.login_recruiter(this.recruiter) : this.login_candidate(this.candidate);
+    console.log(sessionStorage);
     //window.location.reload();
   }
 
