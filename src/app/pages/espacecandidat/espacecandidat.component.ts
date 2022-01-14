@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EspacecandidatComponent implements OnInit {
 
   shouldShow = false;
+  message;
   
   // user = {
 
