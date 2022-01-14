@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Recruiter } from '../shared/recruiter';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +11,11 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   espace : boolean=true;
-  message;
-  departements:any;
-  isRecruiter;
-  BASE_URL: "http://localhost:8080/danavalley/api/candidats";
+
+  BASE_URL = "http://localhost:8080/danavalley/recruteur";
+  recruiter = new Recruiter();
+  departements: any;
+
 
   candidate: any = {
     name : "",
@@ -24,28 +26,23 @@ export class RegisterComponent implements OnInit {
     dept:22,
     mail: "", 
     pwd: "", 
-    isRecruiter:false}
+    isRecruiter:false
+  }
 
-  recruiter: any = {
-    entreprise :"",
-    mail: "", 
-    pwd: "", 
-    logo :"",
-    name :"",
-    surname :"",
-    login:"",
-    dept:0,
+ 
 
-    isRecruiter:true}
 
-  constructor(private router:Router , private http : HttpClient) { }
+  constructor(private router:Router, private http:HttpClient) { }
+
 
   ngOnInit(): void {
    // document.getElementById("esp_rec").style.display='none';
     document.getElementById("form_rec").style.visibility='hidden';
 
+
     // récupération de la liste des départements dispo depuis la base
     // dynamiser les boutons radio du html avec ?
+
     this.http.get(this.BASE_URL + "/departements").subscribe(
       response=>{
         this.departements = response;
@@ -57,13 +54,9 @@ export class RegisterComponent implements OnInit {
 
     this.espace= !this.espace;
     if(this.espace===false){
-    //document.getElementById("esp_can").style.display='none';
-    //document.getElementById("esp_rec").style.display='block';
     document.getElementById("form_can").style.visibility='hidden';
     document.getElementById("form_rec").style.visibility='visible';
   } else{
-    //document.getElementById("esp_can").style.display='block';
-    //document.getElementById("esp_rec").style.display='none';
     document.getElementById("form_can").style.visibility='visible';
     document.getElementById("form_rec").style.visibility='hidden';
   }
@@ -89,7 +82,6 @@ find_departement(user:any){
 send_to_db(endpoint, user){
   // création d'un nouveau user (candidat ou recruteur) en db et auto-login
   this.http.post(
-
     this.BASE_URL + endpoint,
     JSON.stringify(user),
     {headers: new HttpHeaders({"Content-Type": "application/json"})}
@@ -151,5 +143,6 @@ register(isRecruiter: boolean){
 
   isRecruiter ? this.registerRecruiter() : this.register_candidate();
 }
+
 
 }

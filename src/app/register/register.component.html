@@ -38,7 +38,7 @@
                   <option value="admin_sys">Admin Système</option>
                   <option value="devops">DevOps</option>
                 </select>
-              </div>
+            </div>
               <div class="form-group">
                   <label>Votre expérience :</label>
                 <input type="number" class="form-control" placeholder="années d'expérience" [(ngModel)]="candidate.exp" name="exp_candidate" />
@@ -82,7 +82,7 @@
         
             <div class="form-group">
                 <label>Nom de l'entreprise :</label>
-                <input type="text" class="form-control" placeholder="entreprise" [(ngModel)]="recruiter.entreprise" name="entreprise_recruiter" />
+                <input type="text" class="form-control" placeholder="entreprise" [(ngModel)]="recruiter.nom_entreprise" name="entreprise_recruiter" />
             </div>
             <div class="form-group">
                 <label>Logo :</label><br>
@@ -94,45 +94,57 @@
 
             <div class="form-group">
                 <label>Nom :</label>
-                <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="recruiter.name" name="entreprise_recruiter" />
+                <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="recruiter.nom" name="entreprise_recruiter" />
             </div>
             <div class="form-group">
                 <label>Prenom :</label>
-                <input type="text" class="form-control" placeholder="Prenom" [(ngModel)]="recruiter.surname" name="entreprise_recruiter" />
+                <input type="text" class="form-control" placeholder="Prenom" [(ngModel)]="recruiter.prenom" name="entreprise_recruiter" />
             </div>
             <div class="form-group">
                 <label>Login :</label>
                 <input type="text" class="form-control" placeholder="Login" [(ngModel)]="recruiter.login" name="entreprise_recruiter" />
             </div>
             <div class="form-group">
-                <label>Mot de passe :</label>
-                <input type="password" class="form-control" placeholder="mot de passe" [(ngModel)]="recruiter.pwd" name="pwd_recruiter" />
+                <label>Mail :</label>
+                <input type="text" class="form-control" placeholder="mail" [(ngModel)]="recruiter.mail" name="mail_recruiter" />
             </div>
             <div class="form-group">
                 <label>Mot de passe :</label>
-                <input type="password" class="form-control" placeholder="mot de passe" [(ngModel)]="recruiter.pwd" name="pwd_recruiter" />
+                <input type="password" class="form-control" placeholder="mot de passe" [(ngModel)]="recruiter.mdp" name="pwd_recruiter" />
             </div>
+            
+            
             <label>Département :</label><br>
               <div class="form-check">
                 <label class="form-check-label">
+
                   <input type="radio" class="form-check-input" value="22" [(ngModel)]="recruiter.dept" name="optradio_r">Côtes d'Armor - 22
+
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
+
                   <input type="radio" class="form-check-input" value="29" [(ngModel)]="recruiter.dept" name="optradio_r">Finistère - 29
+
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
+
                   <input type="radio" class="form-check-input" value="35" [(ngModel)]="recruiter.dept" name="optradio_r">Ille et Vilaine - 35
+
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
+
                   <input type="radio" class="form-check-input" value="56" [(ngModel)]="recruiter.dept" name="optradio_r">Morbihan - 56
+
                 </label>
               </div>
+
+              
 
             <div class="form-group">
                 <button (click)="register(true)" class="btn btn-outline-dark" style="margin-top:30px">S'inscrire</button>

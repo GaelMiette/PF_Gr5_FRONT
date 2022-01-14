@@ -8,20 +8,21 @@ import { Component, OnInit } from '@angular/core';
 export class EspacerecruteurComponent implements OnInit {
 
   shouldShow = false;
-  user = {
+  // user = {
 
-    nom: "sparrow", 
-    prenom: "jack", 
-    entreprise: "froustillon",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/langfr-220px-Angular_full_color_logo.svg.png",
-    departement: "bouh",
-  }
+  //   nom: "sparrow", 
+  //   prenom: "jack", 
+  //   entreprise: "froustillon",
+  //   logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/langfr-220px-Angular_full_color_logo.svg.png",
+  //   departement: "bouh",
+  // }
+  user = null;
 
   constructor() { }
 
   ngOnInit(): void {
-    // récupérer le user depuis le session storage
-    // le session storage est créé depuis le login
+    this.user = JSON.parse(sessionStorage.getItem("user"));
+    console.log(this.user);
   }
 
   display_form(should){

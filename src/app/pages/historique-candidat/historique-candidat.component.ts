@@ -13,7 +13,9 @@ export class HistoriqueCandidatComponent implements OnInit {
 
   user = {isRecruiter: false}
 
-  constructor(private http:HttpClient ) { }
+
+  constructor(private http:HttpClient) { }
+
 
   ngOnInit(): void {
     this.get_liste();
