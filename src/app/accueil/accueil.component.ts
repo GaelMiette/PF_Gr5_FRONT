@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilComponent implements OnInit {
 
-  constructor() { }
+  BASE_URL = "http://localhost:8080/danavalley/api";
+  
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
+
+    sessionStorage.setItem("BASE_URL", this.BASE_URL);
+
+    this.http.get(this.BASE_URL + "/departements").subscribe(
+      response=>{
+        let toStore = JSON.stringify(response);
+        sessionStorage.setItem("departements", toStore);
+      }
+    )
   }
 
 }

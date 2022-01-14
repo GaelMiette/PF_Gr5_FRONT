@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Recruiter } from '../shared/recruiter';
 
 @Component({
   selector: 'app-login',
@@ -8,31 +10,43 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  BASE_URL = "";
   candidate: any = {mail: "", pwd: "", isRecruiter:false}
-  recruiter: any = {mail: "", pwd: "", isRecruiter:true}
+  recruiter: any = {mail: "", mdp: "", isRecruiter:true}
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private http:HttpClient) { }
 
   ngOnInit(): void {
+    this.BASE_URL = sessionStorage.getItem("BASE_URL");
+  }
+
+  login_candidate(){}
+
+  login_recruiter(user){
+    
+    this.http.get<Recruiter>(this.BASE_URL + "/recruteursmail/" + user.mail).subscribe(
+
+      response =>{
+        
+        if(response != null && response.mdp == user.mdp){
+          response.isRecruiter = true;
+          let toStore = JSON.stringify(response);
+          sessionStorage.setItem("user", toStore);
+          this.router.navigate(["/home"]);
+        }
+
+      },
+      error =>{
+        alert("bouh");
+      }
+      
+    )
   }
 
   login(isRecruiter: boolean){
 
-    let user = this.candidate;
-
-    if(isRecruiter){
-      user = this.recruiter;
-    }
-
-    // vérification bdd
-    let isRegistered: boolean = true;
-    
-    if(isRegistered){
-      delete user.pwd;
-      let toStore = JSON.stringify(user);
-      sessionStorage.setItem("user", toStore);
-      this.router.navigate(["/accueil"]);
-    }
+    isRecruiter ? this.login_recruiter(this.recruiter) : this.login_candidate();
+    window.location.reload();
   }
 
 }

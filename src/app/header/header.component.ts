@@ -10,10 +10,11 @@ export class HeaderComponent implements OnInit {
 
   constructor(private route: Router ) { }
 
-  // user: any = {mail: "", pwd: "", isRecruiter:true}
   user = null
 
   ngOnInit(): void {
+    this.user = JSON.parse(sessionStorage.getItem("user"));
+    console.log(this.user)
   }
 
   logout(){
