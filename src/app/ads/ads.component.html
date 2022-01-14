@@ -9,10 +9,10 @@
             </div>
             <div class="">
                 <h4 class="card-title">{{x.titre}}</h4>
-                <p>posté le : {{x.date}} par {{x.recruteur.name}} - ({{x.dept.name}} - {{x.dept.id}})</p>
-                <span>cat : {{x.categorie}} - type de contrat : {{x.type_contrat}} - salaire : {{x.salaire}}</span>
+                <p>posté le : {{x.date}} par {{x.recruteur.prenom}} {{x.recruteur.nom}} - ({{x.departement.nom}} - {{x.departement.id}})</p>
+                <span>cat : {{x.categorie}} - type de contrat : {{x.type_Contrat}} - salaire : {{x.salaire}}</span>
                 <p class="card-text">{{x.description}}</p>
-                <a href="ad" class="card-link"><button class="btn btn-outline-dark">Voir détails</button></a>
+                <a class="card-link"><button class="btn btn-outline-dark" (click)="seeDescription(x.id)">Voir détails</button></a>
                 <!--<a href="#" class="card-link">Another link</a> -->
             </div>
         </div>

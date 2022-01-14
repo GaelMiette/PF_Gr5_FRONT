@@ -25,12 +25,12 @@
                                 
                                 <div class="col-sm-6">
                                     <p class="m-b-10 f-w-600">Expérience</p>
-                                    <h6 class="text-muted f-w-400">{{user.experience}}</h6>
+                                    <h6 class="text-muted f-w-400">{{user.anneesxp}}</h6>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <p class="m-b-10 f-w-600">Département</p>
-                                    <h6 class="text-muted f-w-400">{{user.departement}}</h6>
+                                    <h6 class="text-muted f-w-400">{{user.departement_id}}</h6>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -61,12 +61,12 @@
                 
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Profession</label><input type="text" class="form-control" [(ngModel)]="user.profession"></div>
-                    <div class="col-md-12"><label class="labels">Experience</label><input type="text" class="form-control" [(ngModel)]="user.experience"></div>
+                    <div class="col-md-12"><label class="labels">Experience</label><input type="text" class="form-control" [(ngModel)]="user.anneesxp"></div>
                     <div class="col-md-12"><label class="labels">Mail</label><input type="text" class="form-control" [(ngModel)]="user.mail"></div>
                 </div>
                 
                 <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Département</label><input type="text" class="form-control" [(ngModel)]="user.departement"></div>
+                    <div class="col-md-6"><label class="labels">Département</label><input type="text" class="form-control" [(ngModel)]="user.departement_id"></div>
                 </div>
                 
                 <div class="row mt-5 center"><button (click)="update()" class="btn btn-primary" type="button">valider</button></div>
