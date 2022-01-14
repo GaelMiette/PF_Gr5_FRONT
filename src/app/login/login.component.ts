@@ -32,12 +32,13 @@ export class LoginComponent implements OnInit {
           response.isRecruiter = true;
           let toStore = JSON.stringify(response);
           sessionStorage.setItem("user", toStore);
-          this.router.navigate(["/home"]);
+          window.location.reload();
+          alert("connecté");
         }
 
       },
       error =>{
-        alert("bouh");
+        alert("erreur");
       }
       
     )
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
   login(isRecruiter: boolean){
 
     isRecruiter ? this.login_recruiter(this.recruiter) : this.login_candidate();
-    window.location.reload();
+    
   }
 
 }
