@@ -11,9 +11,12 @@ import { Recruiter } from '../shared/recruiter';
 export class RegisterComponent implements OnInit {
 
   espace : boolean=true;
+
   BASE_URL = null;
+
   recruiter = new Recruiter();
   departements: any;
+
 
   candidate: any = {
     name : "",
@@ -29,9 +32,11 @@ export class RegisterComponent implements OnInit {
 
   constructor(private router:Router, private http:HttpClient) { }
 
+
   ngOnInit(): void {
    // document.getElementById("esp_rec").style.display='none';
     document.getElementById("form_rec").style.visibility='hidden';
+
     
     this.BASE_URL = sessionStorage.getItem("BASE_URL");
     // récupération de la liste des départements dispo
@@ -43,16 +48,13 @@ export class RegisterComponent implements OnInit {
 
     this.espace = !this.espace;
     if(this.espace===false){
-    //document.getElementById("esp_can").style.display='none';
-    //document.getElementById("esp_rec").style.display='block';
     document.getElementById("form_can").style.visibility='hidden';
     document.getElementById("form_rec").style.visibility='visible';
-    } else{
-      //document.getElementById("esp_can").style.display='block';
-      //document.getElementById("esp_rec").style.display='none';
-      document.getElementById("form_can").style.visibility='visible';
-      document.getElementById("form_rec").style.visibility='hidden';
-    }
+
+  } else{
+    document.getElementById("form_can").style.visibility='visible';
+    document.getElementById("form_rec").style.visibility='hidden';
+
   }
 
   find_departement(user:any){
