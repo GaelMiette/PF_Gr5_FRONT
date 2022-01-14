@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Candidate } from '../shared/candidate';
 import { Recruiter } from '../shared/recruiter';
 
 @Component({
@@ -15,20 +16,11 @@ export class RegisterComponent implements OnInit {
   BASE_URL = null;
 
   recruiter = new Recruiter();
+  candidate= new Candidate();
   departements: any;
 
 
-  candidate: any = {
-    name : "",
-    surname : "",
-    profession:"",
-    exp:0,
-    age:0,
-    dept:22,
-    mail: "", 
-    pwd: "", 
-    isRecruiter:false
-  }
+  
 
   constructor(private router:Router, private http:HttpClient) { }
 
@@ -104,6 +96,20 @@ export class RegisterComponent implements OnInit {
 
   // pour toi gael !
   registerCandidate(){
+    let user = this.find_departement(this.candidate);
+    user.isRecruiter = false;
+
+    // vérification bdd si le mail existe déjà
+    this.http.get<Candidate>(this.BASE_URL + "/candidatsmail/" + user.mail).subscribe(
+      
+      async response => {
+        if(response == null){
+          // si la réponse vaut null, c'est qu'aucun recruteur avec ce mail n'existe, on le créé
+          this.send_to_db("/candidats", user);
+        }
+      }
+
+    )
 
   }
 
@@ -132,3 +138,4 @@ export class RegisterComponent implements OnInit {
   }
 
 }
+
