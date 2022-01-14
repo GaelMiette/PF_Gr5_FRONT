@@ -16,10 +16,9 @@ export class HeaderComponent implements OnInit {
   user = null
 
   ngOnInit(): void {
+    
     this.user = JSON.parse(sessionStorage.getItem("user"));
-    console.log(this.user)
 
-    console.log("bouh");
     sessionStorage.setItem("BASE_URL", this.BASE_URL);
 
     this.http.get(this.BASE_URL + "/departements").subscribe(
