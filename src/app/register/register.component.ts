@@ -56,6 +56,7 @@ export class RegisterComponent implements OnInit {
     document.getElementById("form_rec").style.visibility='hidden';
 
   }
+}
 
   find_departement(user:any){
     // On récupère depuis le formulaire l'id d'un département.
