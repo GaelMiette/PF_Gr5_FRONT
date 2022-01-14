@@ -7,22 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EspacerecruteurComponent implements OnInit {
 
+  default_img_url = "https://th.bing.com/th/id/R.88f4f67fe36423a9f099e32757f61acc?rik=CLtRO2eGANx4Vw&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_329115.png&ehk=mXoK%2be700RIpbejgADkfZYJSnzVqJhHHmQWdguPy40k%3d&risl=&pid=ImgRaw&r=0"
   shouldShow = false;
-  // user = {
-
-  //   nom: "sparrow", 
-  //   prenom: "jack", 
-  //   entreprise: "froustillon",
-  //   logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/langfr-220px-Angular_full_color_logo.svg.png",
-  //   departement: "bouh",
-  // }
   user = null;
+  // liste de tous les departements dispos
+  departements = null;
+  // département renseigné dans le formulaire
+  departement = null;
 
   constructor() { }
 
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem("user"));
-    console.log(this.user);
+    this.departements = JSON.parse(sessionStorage.getItem("departements"));
   }
 
   display_form(should){

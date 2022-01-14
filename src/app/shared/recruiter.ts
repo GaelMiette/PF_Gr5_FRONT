@@ -6,7 +6,7 @@ export class Recruiter {
     mdp = "";
     nom = "";
     prenom = "";
-    nom_entreprise = "";
+    nom_Entreprise = "";
     departement_id = 0;
 
     isRecruiter = true;

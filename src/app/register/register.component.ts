@@ -11,7 +11,7 @@ import { Recruiter } from '../shared/recruiter';
 export class RegisterComponent implements OnInit {
 
   espace : boolean=true;
-  BASE_URL = "http://localhost:8080/danavalley/api";
+  BASE_URL = null;
   recruiter = new Recruiter();
   departements: any;
 
@@ -32,19 +32,16 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
    // document.getElementById("esp_rec").style.display='none';
     document.getElementById("form_rec").style.visibility='hidden';
-
-    // récupération de la liste des départements dispo depuis la base
+    
+    this.BASE_URL = sessionStorage.getItem("BASE_URL");
+    // récupération de la liste des départements dispo
     // dynamiser les boutons radio du html avec ?
-    this.http.get(this.BASE_URL + "/departements").subscribe(
-      response=>{
-        this.departements = response;
-      }
-    )
+    this.departements = JSON.parse(sessionStorage.getItem("departements"));    
   }
 
   toggle(){
 
-    this.espace= !this.espace;
+    this.espace = !this.espace;
     if(this.espace===false){
     //document.getElementById("esp_can").style.display='none';
     //document.getElementById("esp_rec").style.display='block';
@@ -108,7 +105,7 @@ export class RegisterComponent implements OnInit {
   registerRecruiter(){
     
     let user = this.find_departement(this.recruiter);
-    console.log("recruiter : ", user);
+    user.isRecruiter = true;
 
     // vérification bdd si le mail existe déjà
     this.http.get<Recruiter>(this.BASE_URL + "/recruteursmail/" + user.mail).subscribe(
