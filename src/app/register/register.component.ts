@@ -69,6 +69,7 @@ export class RegisterComponent implements OnInit {
   }
 
   send_to_db(endpoint, user){
+    console.log("sendtodb : ", JSON.stringify(user));
     // création d'un nouveau user (candidat ou recruteur) en db et auto-login
     this.http.post(
 
@@ -81,15 +82,16 @@ export class RegisterComponent implements OnInit {
       response =>{
         let toStore = JSON.stringify(user);
         sessionStorage.setItem("user", toStore);
-        this.router.navigate(["/home"]);
+        window.location.reload();
+        alert("profil crée !")
       },
 
       error =>{
-        alert("bouh")
+        alert("erreur")
       }
       
     )
-    
+    window.location.reload();
   }
 
   // pour toi gael !
@@ -115,6 +117,7 @@ export class RegisterComponent implements OnInit {
     
     let user = this.find_departement(this.recruiter);
     user.isRecruiter = true;
+    // user.id = 1;
 
     // vérification bdd si le mail existe déjà
     this.http.get<Recruiter>(this.BASE_URL + "/recruteursmail/" + user.mail).subscribe(

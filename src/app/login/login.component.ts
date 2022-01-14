@@ -47,19 +47,19 @@ export class LoginComponent implements OnInit {
           response.isRecruiter = true;
           let toStore = JSON.stringify(response);
           sessionStorage.setItem("user", toStore);
-          this.router.navigate(["/home"]);
+          window.location.reload();
+          alert("connecté");
         }
 
       },
       error =>{
-        alert("bouh");
+        alert("erreur");
       }
       
     )
   }
 
   login(isRecruiter: boolean){
-
     console.log(sessionStorage);
     isRecruiter ? this.login_recruiter(this.recruiter) : this.login_candidate(this.candidate);
     console.log(sessionStorage);
