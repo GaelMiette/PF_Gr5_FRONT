@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Recruiter } from '../shared/recruiter';
 import { Candidate } from '../shared/candidate';
 
@@ -21,49 +21,48 @@ export class LoginComponent implements OnInit {
     this.BASE_URL = sessionStorage.getItem("BASE_URL");
   }
 
-  login_candidate(user){
-    this.http.get<Candidate>(this.BASE_URL + "/candidatsmail/" + user.mail).subscribe(
-      response =>{
-        if(response != null && response.mdp == user.mdp){
-          response.isRecruiter = false;
-          let toStore = JSON.stringify(response);
-          sessionStorage.setItem("user", toStore);
-          this.router.navigate(["/home"]);
-        }
-      },
-      error =>{
-        alert("bouh");
-      }
-    )
+  async login_candidate(user){
+
+    let registered = await this.http.get<Candidate>(this.BASE_URL + "/candidatsmail/" + user.mail).toPromise()[0]
+    
+    if(registered == undefined){
+      alert("cet utilisateur n'existe pas");
+      return ;
+    }
+        
+    if(registered.mdp != user.mdp){
+      alert("mauvais mot de passe");
+      return ;
+    }
+    
+    registered.isRecruiter = false;
+    let toStore = JSON.stringify(registered);
+    sessionStorage.setItem("user", toStore);
+
   }
 
-  login_recruiter(user){
-    
-    this.http.get<Recruiter>(this.BASE_URL + "/recruteursmail/" + user.mail).subscribe(
+  async login_recruiter(user){
 
-      response =>{
+    let registered = await this.http.get<Recruiter>(this.BASE_URL + "/recruteursmail/" + user.mail).toPromise()
+    console.log(registered)
+    if(registered == undefined){
+      alert("cet utilisateur n'existe pas");
+      return ;
+    }
         
-        if(response != null && response.mdp == user.mdp){
-          response.isRecruiter = true;
-          let toStore = JSON.stringify(response);
-          sessionStorage.setItem("user", toStore);
-          window.location.reload();
-          alert("connecté");
-        }
-
-      },
-      error =>{
-        alert("erreur");
-      }
-      
-    )
+    if(registered.mdp != user.mdp){
+      alert("mauvais mot de passe");
+      return ;
+    }
+    
+    registered.isRecruiter = true;
+    let toStore = JSON.stringify(registered);
+    sessionStorage.setItem("user", toStore);
   }
 
   login(isRecruiter: boolean){
-    console.log(sessionStorage);
     isRecruiter ? this.login_recruiter(this.recruiter) : this.login_candidate(this.candidate);
-    console.log(sessionStorage);
-    //window.location.reload();
+    window.location.reload();
   }
 
 }

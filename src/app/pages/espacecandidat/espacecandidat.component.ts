@@ -11,24 +11,26 @@ export class EspacecandidatComponent implements OnInit {
 
   shouldShow = false;
   message;
-  
-  // user = {
 
-  //   nom: "sparrow", 
-  //   prenom: "jack", 
-  //   age: 35,
-  //   mail: "blackpearl@bouh.fr",
-    
-  user = null;
+  user ={
+    id:1,
+    age:25,
+    nom:"dupond",
+    prenom:"toto",
+    departement_id:22,
+    anneesxp:22,
+    mail: "aze@aze",
+    mdp : "zer",
+    profession:"developpeur",
+    version:1,
+  }
 
 
   constructor(private http:HttpClient , private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    this.user = JSON.parse(sessionStorage.getItem("user"));
+    //this.user = JSON.parse(sessionStorage.getItem("user"));
     console.log(this.user);
-
   }
 
   toggle_display(){
@@ -43,24 +45,47 @@ export class EspacecandidatComponent implements OnInit {
     this.shouldShow = should
   }
 
-  update(){
-    this.http
-    .put("http://localhost:8080/danavalley/api/candidats", 
-      JSON.stringify(this.user),
-      {
-        headers : new HttpHeaders({
-          'Content-Type' : 'application/json'
-        })
-      })
-      .subscribe(
-        (response)=>{
-          this.message = "Profil modifié"
-        },
-        (err)=>{
-          this.message="no bueno"
-        }
 
-      )
+put_function(tmp){
+  this.http
+  .put(
+    sessionStorage.getItem('BASE_URL') + '/candidats',
+    JSON.stringify(tmp),
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    }
+  )
+  .subscribe(
+    (response) => {
+      this.message = 'Profil modifié';
+      sessionStorage.setItem("user", tmp);
+    },
+    (err) => {
+      this.message = 'no bueno la modificacion';
+    }
+  );
+}
+
+update(){
+  let tmp;
+  this.http.get(sessionStorage.getItem("BASE_URL")+"/candidatsmail/"+this.user.mail)
+  .subscribe(
+    (response)=>{
+      if(response!=[])
+      tmp=response[0];
+
+      if(tmp!=null){
+        tmp=this.user;
+        console.log("tmp prend la valeur du user");
+      }else{
+        this.message="user n'existe pas dans la db.";
+        return tmp;
+      }
+      this.put_function(tmp);
+    }
+  )
+        console.log("j'arrive au bout : "+tmp.nom +" "+tmp.prenom)
   }
-
 }

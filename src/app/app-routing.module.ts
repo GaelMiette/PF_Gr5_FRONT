@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: "home" , component : AccueilComponent},
   {path: "login" , component : LoginComponent},
   {path: "register" , component : RegisterComponent},
-  {path: "ad" , component : LittleAdComponent},
+  {path: "ad/:id" , component : LittleAdComponent},
   {path: "ads" , component : AdsComponent}
 ];
 

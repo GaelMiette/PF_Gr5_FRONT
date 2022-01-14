@@ -1,19 +1,40 @@
-<div class="card" style="margin-left : 250px ; margin-right : 250px">
-  
-  <div class="card-body d-flex row align-items-center">
-    <div class="mr-auto" style="margin-right : 30px">
-      <img class="card-img" style="width: 350px" src="./assets/carnac.jpg" alt="illustration annonce">
-    </div>
-    <div class="d-flex row align-items-end ml-auto">
-      <div class="p-2 mr-auto">
-        <h4 class="card-title">{{annonce.titre}}</h4>
-        <p>cat : {{annonce.categorie}} - type de contrat : {{annonce.type_contrat}} - salaire : {{annonce.salaire}}</p>
-        <p>posté le : {{annonce.date}} par {{annonce.recruteur.name}} - {{annonce.dept.name}} - {{annonce.dept.id}}</p>
-        <p class="card-text" style="width : 850px">{{annonce.description}}</p>
+  <!-- <div class="card" style="margin-left : 250px ; margin-right : 250px">
+    <div class="card-body d-flex row align-items-center">
+      <div class="mr-auto" style="margin-right : 30px">
+        <img class="card-img" style="width: 350px" src="./assets/carnac.jpg" alt="illustration annonce">
       </div>
-      <div class="p-2 ml-auto">
-        <button (click)="candidater()" class="btn btn-outline-dark">POSTULER</button>
+      <div class="d-flex row align-items-end ml-auto">
+        <div class="p-2 mr-auto">
+          <h4 class="card-title">{{annonce.titre}}</h4>
+          <p>cat : {{annonce.categorie}} - type de contrat : {{annonce.type_Contrat}} - salaire : {{annonce.salaire}}</p>
+          <p>posté le : {{annonce.date}} par {{annonce.recruteur.nom}} - {{annonce.departement.nom}} - {{annonce.departement.id}}</p>
+          <p class="card-text" style="width : 850px">{{annonce.description}}</p>
+        </div>
+        <div class="p-2 ml-auto">
+          <button (click)="candidater()" class="btn btn-outline-dark">POSTULER</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<div class="container-fluid">
+  <div class="card" style="margin-left : 250px ; margin-right : 250px">
+    <div class="card-body d-flex row align-items-center">
+      <div class="mr-auto col-2" style="margin-right : 30px">
+        <img class="card-img" style="width: 350px" src="./assets/carnac.jpg" alt="illustration annonce">
+      </div>
+      <div class="d-flex row align-items-end ml-auto col-8">
+        <div class="p-2 mr-auto">
+          <h4 class="card-title">{{annonce.titre}}</h4>
+          <p>cat : {{annonce.categorie}} - type de contrat : {{annonce.type_Contrat}} - salaire : {{annonce.salaire}}</p>
+          <p>posté le : {{annonce.date}} par {{annonce.recruteur.nom}} - {{annonce.departement.nom}} - {{annonce.departement.id}}</p>
+          <p class="card-text" style="width : 850px">{{annonce.description}}</p>
+        </div>
+        <div class="p-2 ml-auto col-2">
+          <button (click)="candidater()" class="btn btn-outline-dark">POSTULER</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  </div>
+

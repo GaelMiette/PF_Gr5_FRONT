@@ -19,10 +19,7 @@ export class RegisterComponent implements OnInit {
   candidate= new Candidate();
   departements: any;
 
-
-  
-
-  constructor(private router:Router, private http:HttpClient) { }
+  constructor(private http:HttpClient) { }
 
 
   ngOnInit(): void {
@@ -68,74 +65,65 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  send_to_db(endpoint, user){
-    console.log("sendtodb : ", JSON.stringify(user));
+  async send_to_db(endpoint, user){
+    
+    let headers = {headers: new HttpHeaders({"Content-Type": "application/json"})}
+    let body = JSON.stringify(user);
+    console.log("sendtodb : ", body);
     // création d'un nouveau user (candidat ou recruteur) en db et auto-login
-    this.http.post(
+    await this.http.post(this.BASE_URL + endpoint, body, headers).toPromise();
+    
+    let toStore = body;
+    sessionStorage.setItem("user", toStore);
+    
+    alert("profil crée !");
+  }
 
-      this.BASE_URL + endpoint,
-      JSON.stringify(user),
-      {headers: new HttpHeaders({"Content-Type": "application/json"})}
+  async register(isRecruiter: boolean){
 
-    ).subscribe(
+    console.log("début")
 
-      response =>{
-        let toStore = JSON.stringify(user);
-        sessionStorage.setItem("user", toStore);
-        window.location.reload();
-        alert("profil crée !")
+    let users = {
+
+      "recruiter": {
+        data: this.recruiter,
+        func: (input) => this.http.get<Recruiter>(this.BASE_URL + input.endpoint_exists + input.data.mail),
+        endpoint_exists: "/recruteursmail/",
+        endpoint_post: "/recruteurs",
+        isRecruiter: true
       },
 
-      error =>{
-        alert("erreur")
+      "candidate": {
+        data: this.candidate,
+        func: (input) => this.http.get<Candidate>(this.BASE_URL + input.endpoint_exists + input.data.mail),
+        endpoint_exists: "/candidatsmail/",
+        endpoint_post: "/candidats",
+        isRecruiter: false
       }
+
+    }
+
+    let key  = isRecruiter ? "recruiter" : "candidate";
+    let user = users[key];
+
+    user.data = this.find_departement(user.data);
+    user.data.isRecruiter = user.isRecruiter;
+
+    console.log("user to store : ", user)
+    
+    let registered = await user.func(user).toPromise()[0];
+    console.log(registered) 
+
+    if(registered == undefined){
+      console.log("n'existe pas")
+      // si la réponse vaut null, c'est qu'aucun recruteur avec ce mail n'existe, on le créé
+      await this.send_to_db(user.endpoint_post, user.data);
       
-    )
+    }else{
+      console.log("existe déjà")
+    }
+    console.log("fin")
     window.location.reload();
   }
 
-  // pour toi gael !
-  registerCandidate(){
-    let user = this.find_departement(this.candidate);
-    user.isRecruiter = false;
-
-    // vérification bdd si le mail existe déjà
-    this.http.get<Candidate>(this.BASE_URL + "/candidatsmail/" + user.mail).subscribe(
-      
-      async response => {
-        if(response == null){
-          // si la réponse vaut null, c'est qu'aucun recruteur avec ce mail n'existe, on le créé
-          this.send_to_db("/candidats", user);
-        }
-      }
-
-    )
-
-  }
-
-  registerRecruiter(){
-    
-    let user = this.find_departement(this.recruiter);
-    user.isRecruiter = true;
-    // user.id = 1;
-
-    // vérification bdd si le mail existe déjà
-    this.http.get<Recruiter>(this.BASE_URL + "/recruteursmail/" + user.mail).subscribe(
-      
-      async response => {
-        if(response == null){
-          // si la réponse vaut null, c'est qu'aucun recruteur avec ce mail n'existe, on le créé
-          this.send_to_db("/recruteurs", user);
-        }
-      }
-
-    )
-  }
-
-  register(isRecruiter: boolean){
-
-    isRecruiter ? this.registerRecruiter() : this.registerCandidate();
-  }
-
 }
-
