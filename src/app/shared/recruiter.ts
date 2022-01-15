@@ -10,5 +10,6 @@ export class Recruiter {
     departement_id = 0;
     version = 0;
     isRecruiter = true;
+    listeAnnonces = [];
 
 }
