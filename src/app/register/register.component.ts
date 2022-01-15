@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Candidate } from '../shared/candidate';
 import { Recruiter } from '../shared/recruiter';
 
@@ -12,15 +11,12 @@ import { Recruiter } from '../shared/recruiter';
 export class RegisterComponent implements OnInit {
 
   espace : boolean=true;
-
   BASE_URL = null;
-
   recruiter = new Recruiter();
   candidate= new Candidate();
   departements: any;
 
   constructor(private http:HttpClient) { }
-
 
   ngOnInit(): void {
    // document.getElementById("esp_rec").style.display='none';
@@ -45,23 +41,21 @@ export class RegisterComponent implements OnInit {
     document.getElementById("form_rec").style.visibility='hidden';
 
   }
-}
+  }
 
-  find_departement(user:any){
+  find_departement(id){
     // On récupère depuis le formulaire l'id d'un département.
     // Pour l'enregistrement en db, on a besoin du département complet.
-    // Cette fonction assigne au user le département correspondant à l'id du formulaire.
+    // Cette fonction récupère le département correspondant à l'id du formulaire.
     let departement = null;
     
     this.departements.map(dept => {
-      if(dept.id == user.departement_id){
+      if(dept.id == id){
         departement = dept;
       }
     });
-    
-    user.departement = departement;
 
-    return user;
+    return departement;
 
   }
 
@@ -85,20 +79,18 @@ export class RegisterComponent implements OnInit {
 
     let users = {
 
-      "recruiter": {
+      recruiter: {
         data: this.recruiter,
         func: (input) => this.http.get<Recruiter>(this.BASE_URL + input.endpoint_exists + input.data.mail),
         endpoint_exists: "/recruteursmail/",
         endpoint_post: "/recruteurs",
-        isRecruiter: true
       },
 
-      "candidate": {
+      candidate: {
         data: this.candidate,
         func: (input) => this.http.get<Candidate>(this.BASE_URL + input.endpoint_exists + input.data.mail),
         endpoint_exists: "/candidatsmail/",
         endpoint_post: "/candidats",
-        isRecruiter: false
       }
 
     }
@@ -106,12 +98,11 @@ export class RegisterComponent implements OnInit {
     let key  = isRecruiter ? "recruiter" : "candidate";
     let user = users[key];
 
-    user.data = this.find_departement(user.data);
-    user.data.isRecruiter = user.isRecruiter;
+    user.data.departement = this.find_departement(user.data.departement_id);
 
     console.log("user to store : ", user)
     
-    let registered = await user.func(user).toPromise()[0];
+    let registered = await user.func(user).toPromise();
     console.log(registered) 
 
     if(registered == undefined){
@@ -120,7 +111,8 @@ export class RegisterComponent implements OnInit {
       await this.send_to_db(user.endpoint_post, user.data);
       
     }else{
-      console.log("existe déjà")
+      alert("existe déjà");
+      return ;
     }
     console.log("fin")
     window.location.reload();
