@@ -30,9 +30,17 @@
           <p>posté le : {{annonce.date}} par {{annonce.recruteur.nom}} - {{annonce.departement.nom}} - {{annonce.departement.id}}</p>
           <p class="card-text" style="width : 850px">{{annonce.description}}</p>
         </div>
-        <div class="p-2 ml-auto col-2">
+        <div class="p-2 ml-auto col-2" *ngIf="user.isRecruiter==false ; else modifsuppr">
           <button (click)="candidater()" class="btn btn-outline-dark">POSTULER</button>
         </div>
+        <ng-template #modifsuppr>
+          <div class="p-2 ml-auto col-2">
+            <button (click)="modifier()" class="btn btn-outline-light">MODIFIER</button>
+          </div>
+          <div class="p-2 ml-auto col-2">
+            <button (click)="supprimer()" class="btn btn-outline-dark">SUPPRIMER</button>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
