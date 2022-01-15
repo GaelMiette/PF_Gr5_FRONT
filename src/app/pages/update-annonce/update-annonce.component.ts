@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Anounce } from 'src/app/shared/anounce';
 
 @Component({
   selector: 'app-update-annonce',
@@ -11,6 +12,9 @@ export class UpdateAnnonceComponent implements OnInit {
 
   message;
   // user = JSON.parse(sessionStorage.getItem("user"))
+
+  departements = JSON.parse(sessionStorage.getItem("departements"));
+  
   user = {
     nom: "sparrow", 
     prenom: "jack", 
@@ -21,17 +25,7 @@ export class UpdateAnnonceComponent implements OnInit {
 
   date = new Date();
 
-  anounce :any; /* {
-    id:1,
-    titre: "",
-    description: "",
-    categorie: "",
-    date: this.date.getDate() + "/" + this.date.getMonth()+1 + "/" + this.date.getFullYear(),
-    salaire: 0,
-    type_contrat: "",
-    teletravail: false,
-    recruteur: this.user,
-  } */
+  anounce :Anounce= new Anounce();
 
   constructor( private http : HttpClient , private route:ActivatedRoute) { }
 
@@ -43,7 +37,7 @@ export class UpdateAnnonceComponent implements OnInit {
       this.anounce.id = params['id'];
     });
     
-    this.http.get(sessionStorage.getItem("BASE_URL")+"/annonces/"+this.anounce.id)
+    this.http.get<Anounce>(sessionStorage.getItem("BASE_URL")+"/annonces/"+this.anounce.id)
     .subscribe(
     (response)=>{
       this.anounce=response;
@@ -57,7 +51,7 @@ export class UpdateAnnonceComponent implements OnInit {
 
   update(){
     let tmp;
-  this.http.get(sessionStorage.getItem("BASE_URL")+"/annonces/"+this.anounce.id)
+  this.http.get<Anounce>(sessionStorage.getItem("BASE_URL")+"/annonces/"+this.anounce.id)
   .subscribe(
     (response)=>{
       console.log(response.toString());

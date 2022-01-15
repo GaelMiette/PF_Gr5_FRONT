@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Anounce } from '../shared/anounce';
 
 @Component({
   selector: 'app-little-ad',
@@ -10,23 +10,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LittleAdComponent implements OnInit {
 
-  annonce : any;
+  annonce : Anounce = new Anounce();
   id : any;
   user:any;
   constructor(private http : HttpClient, private route : ActivatedRoute , private router : Router) { }
-
-  ngOnInit(): void {
-
-    this.user=sessionStorage.getItem("user");
+  departements = JSON.parse(sessionStorage.getItem("departements"));
+  
+  async ngOnInit() {
+    this.user=JSON.parse(sessionStorage.getItem("user"));
     this.route.params.subscribe(params =>{
       this.id = params['id'];
     });
 
-    this.http.get("http://localhost:8080/danavalley/api/annonces/"+this.id).subscribe(
-      response =>{
-        this.annonce = response;
-      }
-    )
+    this.annonce=await this.http.get<Anounce>("http://localhost:8080/danavalley/api/annonces/"+this.id).toPromise()
+    console.log(this.annonce)
   }
 
   candidater(){
@@ -45,6 +42,21 @@ export class LittleAdComponent implements OnInit {
     })
 
   }
+
+  find_departement(id){
+    let departement = null;
+    
+    this.departements.map(dept => {
+      if(dept.id == id){
+        departement = dept;
+      }
+    });
+
+    return departement;
+
+  }
+
+  
 
 
 }
