@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Recruiter } from 'src/app/shared/recruiter';
 
 @Component({
   selector: 'app-form-annonce',
@@ -7,39 +9,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-annonce.component.css']
 })
 export class FormAnnonceComponent implements OnInit {
-
-  // user = JSON.parse(sessionStorage.getItem("user"))
-  
-  
-  // user = {
-  //   nom: "sparrow", 
-  //   prenom: "jack", 
-  //   entreprise: "entreprise 1664",
-  //   logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Logo_Bi%C3%A8re_1664_en_2021.png/180px-Logo_Bi%C3%A8re_1664_en_2021.png",
-  //   departement: "bouh",
-  // }
-
-  // date = new Date();
-
-  // anounce = {
-  //   titre: "",
-  //   description: "",
-  //   categorie: "",
-  //   date: this.date.getDate() + "/" + this.date.getMonth()+1 + "/" + this.date.getFullYear(),
-  //   salaire: 0,
-  //   type_contrat: "",
-  //   teletravail: false,
-  //   recruteur: this.user,
-  // }
-
-  // constructor() { }
-
-  // ngOnInit(): void {
-  // }
-
-  // send(){
-  //   // post http
-  // }
 
   date = new Date();
 
@@ -60,15 +29,16 @@ export class FormAnnonceComponent implements OnInit {
     departement : null,
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route : Router) { }
 
   ngOnInit(): void {
   }
 
   send(){
-    // post http
+    this.anounce.departement= this.find_departement(this.anounce.departement);
+    
+    delete this.anounce.recruteur.listeAnnonces;
     const body = JSON.stringify(this.anounce);
-    alert(body);
 
     this.http.post(sessionStorage.getItem("BASE_URL")+"/annonces", body, {
       headers: new HttpHeaders({
@@ -78,16 +48,27 @@ export class FormAnnonceComponent implements OnInit {
       subscribe(response => {
 
         console.log("crud service post OK");
-        this.message="annonce créé"
-
+        this.route.navigate(['/historique_recruteur']);
       },
 
         err => {
           console.log("crud service post KO")
-          this.message="erreur annonce"
         });
+
+      
+  }
+
+
+  find_departement(id){
+    let departement = null;
+    
+    this.departements.map(dept => {
+      if(dept.id == id){
+        departement = dept;
       }
+    });
 
-  
+    return departement;
 
+  }
 }
