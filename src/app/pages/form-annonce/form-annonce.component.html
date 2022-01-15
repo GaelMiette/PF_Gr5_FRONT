@@ -22,12 +22,16 @@
                     <div class="wrapped">
                         <input type="text" class="form-control" [(ngModel)]="anounce.date" placeholder="date">
                     </div>
+
+                    <div class="wrapped">
+                        <input type="text" class="form-control" [(ngModel)]="anounce.categorie" placeholder="categorie">
+                    </div>
                     
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" [(ngModel)]="anounce.recruteur.entreprise" placeholder="entreprise">
+                <input type="text" class="form-control" [(ngModel)]="anounce.recruteur.nom_Entreprise" placeholder="entreprise">
             </div>
 
             <div class="form-group">
@@ -39,15 +43,23 @@
                     </div>
                     
                     <div class="form-group wrapped">
-                        <select class="form-control" id="sel1" [(ngModel)]="anounce.type_contrat">
-                          <option value="">--contrat--</option>
+                        <select class="form-control" id="sel1" [(ngModel)]="anounce.type_Contrat">
+                          <option value="" disabled>--contrat--</option>
+                          <option value="cdi">cdi</option>
+                          <option value="cdd">cdd</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group wrapped">
+                        <select class="form-control" id="sel1" [(ngModel)]="anounce.departement">
+                          <option value="" disabled>--contrat--</option>
                           <option value="cdi">cdi</option>
                           <option value="cdd">cdd</option>
                         </select>
                     </div>
                     
                     <div class="form-check wrapped text-center">
-                        <input type="checkbox" class="form-check-input" id="materialUnchecked" [(ngModel)]="anounce.teletravail">
+                        <input type="checkbox" class="form-check-input" id="materialUnchecked" [(ngModel)]="anounce.tele_travail">
                         <label class="form-check-label" for="materialUnchecked">télétravail</label>
                     </div>
                     
