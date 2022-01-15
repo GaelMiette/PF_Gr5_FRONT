@@ -6,20 +6,21 @@
     
     <ul class="list-group">
       
-      <a *ngFor="let annonce of liste" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      <div *ngFor="let annonce of user.listeAnnonces" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
         
         <div class="flex-column">
-          {{annonce.titre}}, {{annonce.recruteur.entreprise}}
+          {{annonce.titre}}, {{user.nom_Entreprise}}
           <p><small>{{annonce.date}} - {{annonce.categorie}}</small></p>
+          <button class="btn btn-primary" style="margin-right: 20px" (click)="go_to_details(annonce.id)">consulter</button>
           <button class="btn btn-warning" style="margin-right: 20px" (click)="go_update(annonce.id)">modifier</button>
           <button class="btn btn-danger" (click)="delete_annonce(annonce.id)">supprimer</button>
         </div>
         
         <div class="image-parent">
-            <img src={{annonce.recruteur.logo}} class="img-fluid" alt="lay">
+            <img src="{{user.logo || default_img_url}}" class="img-fluid" alt="lay">
         </div>
-
-      </a>
+      
+      </div>
 
     </ul>
     
