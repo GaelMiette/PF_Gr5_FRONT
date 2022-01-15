@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-annonce',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateAnnonceComponent implements OnInit {
 
+  message;
   // user = JSON.parse(sessionStorage.getItem("user"))
   user = {
     nom: "sparrow", 
@@ -18,7 +21,8 @@ export class UpdateAnnonceComponent implements OnInit {
 
   date = new Date();
 
-  anounce = {
+  anounce :any; /* {
+    id:1,
     titre: "",
     description: "",
     categorie: "",
@@ -27,17 +31,69 @@ export class UpdateAnnonceComponent implements OnInit {
     type_contrat: "",
     teletravail: false,
     recruteur: this.user,
-  }
+  } */
 
-  constructor() { }
+  constructor( private http : HttpClient , private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    // user = sessionStorage.getItem("user");
     // récuépérer l'id de l'annonce dans l'url
-    // récupérer l'annonce via l'api
+    this.route.params.subscribe(params =>{
+      this.anounce.id = params['id'];
+    });
+    
+    this.http.get(sessionStorage.getItem("BASE_URL")+"/annonces/"+this.anounce.id)
+    .subscribe(
+    (response)=>{
+      this.anounce=response;
+      }
+    )
   }
+  
 
-  send(){
+    
 
+
+  update(){
+    let tmp;
+  this.http.get(sessionStorage.getItem("BASE_URL")+"/annonces/"+this.anounce.id)
+  .subscribe(
+    (response)=>{
+      console.log(response.toString());
+      tmp=response;
+
+      if(tmp!=null){
+        tmp=this.anounce;
+        console.log("tmp prend la valeur de l'annonce modifiée");
+      }else{
+        this.message="annonce n'existe pas dans la db.";
+        return tmp;
+      }
+      this.put_function(tmp);
+      console.log("j'arrive au bout : "+tmp.titre +" "+tmp.categorie);
+    }
+  )
+}
+
+  put_function(tmp){
+    this.http
+    .put(
+      sessionStorage.getItem('BASE_URL') + '/annonces',
+      JSON.stringify(tmp),
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      }
+    )
+    .subscribe(
+      (response) => {
+        this.message = 'Annonce modifiée';
+      },
+      (err) => {
+        this.message = 'no bueno la modificacion';
+      }
+    );
   }
-
 }

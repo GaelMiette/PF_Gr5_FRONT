@@ -15,14 +15,14 @@ export class EspacecandidatComponent implements OnInit {
   user ={
     id:1,
     age:25,
-    nom:"dupond",
+    nom:"trucmuche",
     prenom:"toto",
     departement_id:22,
-    anneesxp:22,
+    anneesxp:0,
     mail: "aze@aze",
     mdp : "zer",
     profession:"developpeur",
-    version:1,
+    version:2,
   }
 
 
@@ -73,8 +73,9 @@ update(){
   this.http.get(sessionStorage.getItem("BASE_URL")+"/candidatsmail/"+this.user.mail)
   .subscribe(
     (response)=>{
-      if(response!=[])
-      tmp=response[0];
+      console.log(response.toString())
+      if(response!=null)
+      tmp=response;
 
       if(tmp!=null){
         tmp=this.user;
@@ -84,8 +85,10 @@ update(){
         return tmp;
       }
       this.put_function(tmp);
+      console.log("j'arrive au bout : "+tmp.nom +" "+tmp.prenom);
+      sessionStorage.setItem("user",tmp);
     }
   )
-        console.log("j'arrive au bout : "+tmp.nom +" "+tmp.prenom)
+        
   }
 }

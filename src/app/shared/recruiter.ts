@@ -8,6 +8,8 @@ export class Recruiter {
     prenom = "";
     nom_Entreprise = "";
     departement_id = 0;
+    listeAnnonces = [];
+    version=0;
 
     isRecruiter = true;
 

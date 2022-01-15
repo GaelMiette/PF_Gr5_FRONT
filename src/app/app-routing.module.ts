@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: "historique_candidat", component: HistoriqueCandidatComponent},
   {path: "historique_recruteur", component: HistoriqueRecruteurComponent},
   {path: "form_annonce", component: FormAnnonceComponent},
-  {path: "update_annonce", component: UpdateAnnonceComponent},
+  {path: "upd_ad/:id", component: UpdateAnnonceComponent},
   {path: "espc", component: EspacecandidatComponent},
   {path: "espr", component: EspacerecruteurComponent},
   {path: "home" , component : AccueilComponent},

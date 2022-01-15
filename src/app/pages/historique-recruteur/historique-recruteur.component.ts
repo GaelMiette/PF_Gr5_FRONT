@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-historique-recruteur',
@@ -11,7 +12,7 @@ export class HistoriqueRecruteurComponent implements OnInit {
 
   user = {isRecruiter: false}
 
-  constructor() { }
+  constructor( private route:Router) { }
 
   ngOnInit(): void {
     this.get_liste();
@@ -75,6 +76,10 @@ export class HistoriqueRecruteurComponent implements OnInit {
       },
     
     ]
+  }
+
+  go_update(id){
+    this.route.navigate(['/ad/'+id]);
   }
 
   delete_annonce(id:number){

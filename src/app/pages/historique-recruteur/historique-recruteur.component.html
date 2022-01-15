@@ -11,7 +11,7 @@
         <div class="flex-column">
           {{annonce.titre}}, {{annonce.recruteur.entreprise}}
           <p><small>{{annonce.date}} - {{annonce.categorie}}</small></p>
-          <button class="btn btn-warning" style="margin-right: 20px" [routerLink]="['/update_annonce/'+annonce.id]">modifier</button>
+          <button class="btn btn-warning" style="margin-right: 20px" (click)="go_update(annonce.id)">modifier</button>
           <button class="btn btn-danger" (click)="delete_annonce(annonce.id)">supprimer</button>
         </div>
         
