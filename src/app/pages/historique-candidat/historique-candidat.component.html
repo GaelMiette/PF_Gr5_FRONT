@@ -10,7 +10,7 @@
           <div class="flex-column">
             <p style="font-weight: bold">{{annonce.titre}} par {{annonce.recruteur.nom}}</p>
             <p><small><span style="font-weight:bold">{{annonce.categorie}}</span> - {{annonce.date}}</small></p>
-            <button class="btn btn-danger" (click)="retirer()">RETIRER CANDIDATURE</button>
+            <button class="btn btn-danger" (click)="retCandidature(annonce.id)">RETIRER CANDIDATURE</button>
           </div>
           
           <div class="image-parent">
