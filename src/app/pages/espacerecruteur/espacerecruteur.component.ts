@@ -27,9 +27,9 @@ export class EspacerecruteurComponent implements OnInit {
     this.BASE_URL = sessionStorage.getItem("BASE_URL");
   }
 
-  display_form(should){
-    this.shouldShow = should
-  }
+  toggle_display() {
+		this.shouldShow = !this.shouldShow;
+	}
 
   find_departement(id){
     // On récupère depuis le formulaire l'id d'un département.
@@ -48,20 +48,19 @@ export class EspacerecruteurComponent implements OnInit {
   }
 
   async valider(){
-    console.log(this.user)
-    this.display_form(false);
+    
+    this.shouldShow = false;
 
     let headers = {headers: new HttpHeaders({"Content-Type": "application/json"})}
     this.user.departement = this.find_departement(this.user.departement_id);
     let body = JSON.stringify(this.user);
-    console.log("before : ", this.user);
 
     await this.http.put(this.BASE_URL + "/recruteurs", body, headers).toPromise();
     this.user = await this.http.get<Recruiter>(this.BASE_URL + "/recruteurs/" + this.user.id).toPromise();
     this.user.isRecruiter = true;
     body = JSON.stringify(this.user);
     sessionStorage.setItem("user", body);
-    console.log("after : ", this.user);
+    
   }
 
 }
