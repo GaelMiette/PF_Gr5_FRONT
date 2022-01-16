@@ -59,62 +59,55 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  async send_to_db(endpoint, user){
-    
-    let headers = {headers: new HttpHeaders({"Content-Type": "application/json"})}
-    let body = JSON.stringify(user);
-    console.log("sendtodb : ", body);
-    // création d'un nouveau user (candidat ou recruteur) en db et auto-login
-    await this.http.post(this.BASE_URL + endpoint, body, headers).toPromise();
-    
-    let toStore = body;
-    sessionStorage.setItem("user", toStore);
-    
-    alert("profil crée !");
-  }
-
   async register(isRecruiter: boolean){
 
     console.log("début")
 
-    let users = {
+    let headers = {headers: new HttpHeaders({"Content-Type": "application/json"})}
+    
+    let dico = {
 
       recruiter: {
-        data: this.recruiter,
-        func: (input) => this.http.get<Recruiter>(this.BASE_URL + input.endpoint_exists + input.data.mail),
-        endpoint_exists: "/recruteursmail/",
-        endpoint_post: "/recruteurs",
+        user: this.recruiter,
+        func: (data) => this.http.get<Recruiter>(this.BASE_URL + data.endpoint_by_mail + data.user.mail),
+        endpoint_by_mail: "/recruteursmail/",
+        endpoint: "/recruteurs",
       },
 
       candidate: {
-        data: this.candidate,
-        func: (input) => this.http.get<Candidate>(this.BASE_URL + input.endpoint_exists + input.data.mail),
-        endpoint_exists: "/candidatsmail/",
-        endpoint_post: "/candidats",
+        user: this.candidate,
+        func: (data) => this.http.get<Candidate>(this.BASE_URL + data.endpoint_by_mail + data.user.mail),
+        endpoint_by_mail: "/candidatsmail/",
+        endpoint: "/candidats",
       }
 
     }
 
     let key  = isRecruiter ? "recruiter" : "candidate";
-    let user = users[key];
+    let data = dico[key];
 
-    user.data.departement = this.find_departement(user.data.departement_id);
+    data.user.departement = this.find_departement(data.user.departement_id);
 
-    console.log("user to store : ", user)
+    console.log("user to store : ", data.user)
     
-    let registered = await user.func(user).toPromise();
+    let registered = await data.func(data).toPromise();
     console.log(registered) 
 
-    if(registered == undefined){
-      console.log("n'existe pas")
-      // si la réponse vaut null, c'est qu'aucun recruteur avec ce mail n'existe, on le créé
-      await this.send_to_db(user.endpoint_post, user.data);
-      
-    }else{
-      alert("existe déjà");
-      return ;
+    if(registered != undefined){
+      alert("cet utilisateur existe déjà");
+      return;
     }
-    console.log("fin")
+
+    let body = JSON.stringify(data.user);
+    await this.http.post(this.BASE_URL + data.endpoint, body, headers).toPromise();
+    
+    data.user = await this.http.get(this.BASE_URL + data.endpoint_by_mail + data.user.mail).toPromise();
+    data.user.isRecruiter = isRecruiter;
+
+    let toStore = JSON.stringify(data.user);
+    sessionStorage.setItem("user", toStore);
+
+    alert("profil crée !");
     window.location.reload();
   }
 
