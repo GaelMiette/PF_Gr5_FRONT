@@ -2,6 +2,7 @@
     max-width: 40px;
 }
 
-.flex-column:hover{
+.list-group-item:hover{
     box-shadow: 8px 8px 5px grey;
+    background-color: lightgrey;
 }
