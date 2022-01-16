@@ -1,7 +1,7 @@
 import { Anounce } from './anounce';
 
 describe('Anounce', () => {
-  it('should create an instance', () => {
-    expect(new Anounce()).toBeTruthy();
-  });
+    it('should create an instance', () => {
+        expect(new Anounce()).toBeTruthy();
+    });
 });

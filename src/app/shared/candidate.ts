@@ -8,10 +8,10 @@ export class Candidate {
     anneesXP = 0;
     age = 0;
     departement_id = 22;
-    mail = ""; 
-    mdp = ""; 
+    mail = "";
+    mdp = "";
     isRecruiter = false;
     version = 0;
-    departement:Department = new Department()
+    departement: Department = new Department()
     listeAnnonces = [];
 }
