@@ -5,112 +5,108 @@ import { Anounce } from '../shared/anounce';
 import { Candidate } from '../shared/candidate';
 
 @Component({
-	selector: 'app-little-ad',
-	templateUrl: './little-ad.component.html',
-	styleUrls: ['./little-ad.component.css']
+    selector: 'app-little-ad',
+    templateUrl: './little-ad.component.html',
+    styleUrls: ['./little-ad.component.css']
 })
 export class LittleAdComponent implements OnInit {
 
-	annonce: Anounce = new Anounce();
-	id: any;
-	user: Candidate = new Candidate();
-	isCandidat: boolean = false;
-	constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
-	departements = JSON.parse(sessionStorage.getItem("departements"));
-	BASE_URL = "";
+    annonce: Anounce = new Anounce();
+    id: any;
+    user: Candidate = new Candidate();
+    isCandidat: boolean = false;
+    constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+    departements = JSON.parse(sessionStorage.getItem("departements"));
+    BASE_URL = "";
 
-	async ngOnInit() {
-		
-		this.user = JSON.parse(sessionStorage.getItem("user"));
+    async ngOnInit() {
 
-		this.route.params.subscribe(params => {
-			this.id = params['id'];
-		});
+        this.user = JSON.parse(sessionStorage.getItem("user"));
 
-		this.annonce = await this.http.get<Anounce>("http://localhost:8080/danavalley/api/annonces/" + this.id).toPromise();
+        this.route.params.subscribe(params => {
+            this.id = params['id'];
+        });
 
-		this.checkPostule();
+        this.annonce = await this.http.get<Anounce>("http://localhost:8080/danavalley/api/annonces/" + this.id).toPromise();
 
-		this.BASE_URL = sessionStorage.getItem("BASE_URL");
-	}
+        this.checkPostule();
 
-	checkPostule() {
-		for (let annonce of this.user.listeAnnonces) {
-			if (annonce.id == this.id) {
-				this.isCandidat = true;
-				break;
-			}else{this.isCandidat = false}
-		}
-	}
+        this.BASE_URL = sessionStorage.getItem("BASE_URL");
+    }
 
-	async candidater() {
+    checkPostule() {
+        for (let annonce of this.user.listeAnnonces) {
+            if (annonce.id == this.id) {
+                this.isCandidat = true;
+                break;
+            } else { this.isCandidat = false }
+        }
+    }
 
-		this.user.listeAnnonces.push(this.annonce);
-		let body = JSON.stringify(this.user);
-		let headers = { headers: new HttpHeaders({ "Content-Type": "application/json" }) };
+    async candidater() {
 
-		await this.http.put(this.BASE_URL + "/candidats", body, headers).toPromise();
+        this.user.listeAnnonces.push(this.annonce);
+        let body = JSON.stringify(this.user);
+        let headers = { headers: new HttpHeaders({ "Content-Type": "application/json" }) };
 
-		this.user = await this.http.get<Candidate>(this.BASE_URL + "/candidats/" + this.user.id).toPromise();
-		this.user.isRecruiter = false;
-		
-		sessionStorage.setItem("user", JSON.stringify(this.user));
-		window.location.reload();
-  }
+        await this.http.put(this.BASE_URL + "/candidats", body, headers).toPromise();
 
-	async retCandidature() {
+        this.user = await this.http.get<Candidate>(this.BASE_URL + "/candidats/" + this.user.id).toPromise();
+        this.user.isRecruiter = false;
 
-		let current = [...this.user.listeAnnonces];
-		
-		this.user.listeAnnonces.map((annonce, index) =>{
-			if(annonce.id == this.id){
-				current.splice(index, 1);
-			}
-		});
+        sessionStorage.setItem("user", JSON.stringify(this.user));
+        window.location.reload();
+    }
 
-		this.user.listeAnnonces = current;
+    async retCandidature() {
 
-		let body = JSON.stringify(this.user);
+        let current = [...this.user.listeAnnonces];
 
-		let headers = { headers: new HttpHeaders({ "Content-Type": "application/json" }) };
+        this.user.listeAnnonces.map((annonce, index) => {
+            if (annonce.id == this.id) {
+                current.splice(index, 1);
+            }
+        });
 
-		await this.http.put(this.BASE_URL + "/candidats", body, headers).toPromise();
+        this.user.listeAnnonces = current;
 
-		this.user = await this.http.get<Candidate>(this.BASE_URL + "/candidats/" + this.user.id).toPromise();
-		this.user.isRecruiter = false;
-		
-		sessionStorage.setItem("user", JSON.stringify(this.user));
-		
-		window.location.reload();
-	}
+        let body = JSON.stringify(this.user);
 
-	modifier() {
-		this.router.navigate(['/upd_ad/' + this.id]);
-	}
+        let headers = { headers: new HttpHeaders({ "Content-Type": "application/json" }) };
 
-	supprimer() {
-		this.http.delete(sessionStorage.getItem("BASE_URL") + "/annonces/" + this.id)
-			.subscribe((response) => {
-				alert(response);
-				this.router.navigate(['/espc']);
-			})
+        await this.http.put(this.BASE_URL + "/candidats", body, headers).toPromise();
 
-	}
+        this.user = await this.http.get<Candidate>(this.BASE_URL + "/candidats/" + this.user.id).toPromise();
+        this.user.isRecruiter = false;
 
-	find_departement(id) {
-		let departement = null;
+        sessionStorage.setItem("user", JSON.stringify(this.user));
 
-		this.departements.map(dept => {
-			if (dept.id == id) {
-				departement = dept;
-			}
-		});
+        window.location.reload();
+    }
 
-		return departement;
+    modifier() {
+        this.router.navigate(['/upd_ad/' + this.id]);
+    }
 
-	}
+    supprimer() {
+        this.http.delete(sessionStorage.getItem("BASE_URL") + "/annonces/" + this.id).subscribe((response) => {
+            alert(response);
+            this.router.navigate(['/espc']);
+        })
 
+    }
 
+    find_departement(id) {
+        let departement = null;
 
+        this.departements.map(dept => {
+            if (dept.id == id) {
+                departement = dept;
+            }
+        });
+
+        return departement;
+
+    }
 
 }

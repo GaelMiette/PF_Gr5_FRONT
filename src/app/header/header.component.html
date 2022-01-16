@@ -1,12 +1,13 @@
 <div class="container-fluid p-3 my-3 border d-flex justify-content-around rounded">
     <div>
-    <a href="home"><img style="width:40%" src="./assets/DanaValley.png" class="rounded-circle" alt="DanaValley logo"/></a>
+        <a href="home"><img style="width:40%" src="./assets/DanaValley.png" class="rounded-circle"
+                alt="DanaValley logo" /></a>
     </div>
     <div>
-    <span class="ml-auto d-flex  flex-column align-items-end">
-        <h1>Dana Valley</h1>
-        <h3 >Votre avenir numérique au format légendaire.</h3>
-    </span>
+        <span class="ml-auto d-flex  flex-column align-items-end">
+            <h1>Dana Valley</h1>
+            <h3>Votre avenir numérique au format légendaire.</h3>
+        </span>
     </div>
 </div>
 
@@ -17,9 +18,10 @@
     <button class="btn btn-outline-dark" style="font-size:20px" [routerLink]="['/ads']">Consulter les annonces</button>
 
     <div *ngIf="user != null">
-        
+
         <div class="dropdown" *ngIf="user.isRecruiter">
-            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" style="font-size:20px">
+            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown"
+                style="font-size:20px">
                 actions
             </button>
             <div class="dropdown-menu">
@@ -30,7 +32,8 @@
         </div>
 
         <div class="dropdown" *ngIf="user.isRecruiter == 0">
-            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" style="font-size:20px">
+            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown"
+                style="font-size:20px">
                 actions
             </button>
             <div class="dropdown-menu">
@@ -43,7 +46,8 @@
 
     <div *ngIf="user == null">
         <div class="dropdown">
-            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" style="font-size:20px">
+            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown"
+                style="font-size:20px">
                 S'inscrire/ Se connecter
             </button>
             <div class="dropdown-menu">
@@ -54,8 +58,8 @@
     </div>
 
     <div *ngIf="user != null">
-        <button type="button" class="btn btn-outline-dark" style="font-size:20px" (click)="logout()">déconnexion</button>
+        <button type="button" class="btn btn-outline-dark" style="font-size:20px"
+            (click)="logout()">déconnexion</button>
     </div>
 
 </nav>
-

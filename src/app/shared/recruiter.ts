@@ -10,11 +10,9 @@ export class Recruiter {
     prenom = "";
     nom_Entreprise = "";
     departement_id = 22;
-
     version = 0;
-
     isRecruiter = true;
     listeAnnonces = [];
-    departement:Department = new Department();
+    departement: Department = new Department();
 
 }

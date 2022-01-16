@@ -1,55 +1,60 @@
 <div class="container">
 
     <div class="card rounded-0">
-        
+
         <div class="card-header p-0">
             <div class="bg-info text-white text-center py-2">
                 <h3>Modifier une annonce</h3>
             </div>
         </div>
-        
+
         <div class="card-body p-3">
-            
+
             <div class="form-group">
                 <div class="input-group mb-2 wrapper">
-                    
+
                     <div class="wrapped">
                         <label for="titre">Titre</label>
-                        <input type="text" name="titre" class="form-control" [(ngModel)]="anounce.titre" placeholder="titre" required>
+                        <input type="text" name="titre" class="form-control" [(ngModel)]="anounce.titre"
+                            placeholder="titre" required>
                     </div>
 
                     <div class="wrapped">
                         <label for="categorie">Categorie</label>
-                        <input type="text" name="categorie" class="form-control" [(ngModel)]="anounce.categorie" placeholder="categorie">
+                        <input type="text" name="categorie" class="form-control" [(ngModel)]="anounce.categorie"
+                            placeholder="categorie">
                     </div>
 
                     <div class="wrapped">
                         <label for="date">Date</label>
-                        <input type="text" name="date" class="form-control" [(ngModel)]="anounce.date" placeholder="date">
+                        <input type="text" name="date" class="form-control" [(ngModel)]="anounce.date"
+                            placeholder="date">
                     </div>
-                    
+
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="entreprise">Entreprise</label>
-                <input type="text" name="entreprise" class="form-control" [(ngModel)]="anounce.recruteur.nom_Entreprise" placeholder="entreprise" disabled>
+                <input type="text" name="entreprise" class="form-control" [(ngModel)]="anounce.recruteur.nom_Entreprise"
+                    placeholder="entreprise" disabled>
             </div>
 
             <div class="form-group">
-                
+
                 <div class="input-group mb-2 wrapper ">
-                    
+
                     <div class="wrapped center">
                         <label for="salaire">Salaire</label>
-                        <input type="number" name="salaire" class="form-control" [(ngModel)]="anounce.salaire" placeholder="salaire">
+                        <input type="number" name="salaire" class="form-control" [(ngModel)]="anounce.salaire"
+                            placeholder="salaire">
                     </div>
 
                     <div class="form-group wrapped">
                         <label for="type_contrat">Type de contrat</label>
                         <select class="form-control" name="type_contrat" id="sel1" [(ngModel)]="anounce.type_Contrat">
-                          <option value="cdi">cdi</option>
-                          <option value="cdd">cdd</option>
+                            <option value="cdi">cdi</option>
+                            <option value="cdd">cdd</option>
                         </select>
                     </div>
 
@@ -57,21 +62,23 @@
                         <label for="localisation">Localisation</label>
                         <select name="localisation" class="form-control" id="dept" [(ngModel)]="anounce.departement">
 
-                            <option *ngFor="let x of departements"  value={{x.id}}>{{x.nom}}</option>
+                            <option *ngFor="let x of departements" value={{x.id}}>{{x.nom}}</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-check wrapped text-center">
-                        <input type="checkbox" class="form-check-input" id="materialUnchecked" [(ngModel)]="anounce.tele_travail">
+                        <input type="checkbox" class="form-check-input" id="materialUnchecked"
+                            [(ngModel)]="anounce.tele_travail">
                         <label class="form-check-label" for="materialUnchecked">télétravail</label>
                     </div>
-                    
+
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea name="description" class="form-control" placeholder="description" [(ngModel)]="anounce.description"></textarea>
+                <textarea name="description" class="form-control" placeholder="description"
+                    [(ngModel)]="anounce.description"></textarea>
             </div>
 
             <div class="text-center">
