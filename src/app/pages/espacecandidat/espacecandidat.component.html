@@ -25,12 +25,12 @@
                                 
                                 <div class="col-sm-6">
                                     <p class="m-b-10 f-w-600">Expérience</p>
-                                    <h6 class="text-muted f-w-400">{{user.anneesxp}}</h6>
+                                    <h6 class="text-muted f-w-400">{{user.anneesXP}}</h6>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <p class="m-b-10 f-w-600">Département</p>
-                                    <h6 class="text-muted f-w-400">{{user.departement_id}}</h6>
+                                    <h6 class="text-muted f-w-400">{{user.departement.id}} - {{user.departement.nom}}</h6>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -61,12 +61,16 @@
                 
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Profession</label><input type="text" class="form-control" [(ngModel)]="user.profession"></div>
-                    <div class="col-md-12"><label class="labels">Experience</label><input type="text" class="form-control" [(ngModel)]="user.anneesxp"></div>
+                    <div class="col-md-12"><label class="labels">Experience</label><input type="text" class="form-control" [(ngModel)]="user.anneesXP"></div>
                     <div class="col-md-12"><label class="labels">Mail</label><input type="text" class="form-control" [(ngModel)]="user.mail"></div>
                 </div>
                 
-                <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Département</label><input type="text" class="form-control" [(ngModel)]="user.departement_id"></div>
+                <label>Département :</label><br>
+                <div class="form-check" *ngFor="let dept of departements">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="{{dept.id}}"
+                            [(ngModel)]="user.departement_id" name="optradio_r">{{dept.id}} - {{dept.nom}}
+                    </label>
                 </div>
                 
                 <div class="row mt-5 center"><button (click)="update()" class="btn btn-primary" type="button">valider</button></div>
