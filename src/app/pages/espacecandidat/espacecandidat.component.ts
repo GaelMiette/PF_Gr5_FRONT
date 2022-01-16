@@ -21,7 +21,7 @@ export class EspacecandidatComponent implements OnInit {
 	ngOnInit(): void {
 		this.user = JSON.parse(sessionStorage.getItem("user"));
 		this.BASE_URL = sessionStorage.getItem("BASE_URL");
-		this.departements = JSON.parse(sessionStorage.getItem("departements"));;
+		this.departements = JSON.parse(sessionStorage.getItem("departements"));
 	}
 
 	toggle_display() {
