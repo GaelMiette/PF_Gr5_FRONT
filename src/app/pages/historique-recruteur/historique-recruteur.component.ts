@@ -20,6 +20,8 @@ export class HistoriqueRecruteurComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem("user"));
+    console.log(this.user);
+    console.log(this.user.listeAnnonces);
     this.BASE_URL = sessionStorage.getItem("BASE_URL");
   }
 
@@ -36,6 +38,8 @@ export class HistoriqueRecruteurComponent implements OnInit {
   async delete_annonce(id:number){
     await this.http.delete(this.BASE_URL+"/annonces/"+id).toPromise();
     this.user = await this.http.get<Recruiter>(this.BASE_URL+"/recruteurs/"+this.user.id).toPromise();
+    this.user.isRecruiter=true;
+    sessionStorage.setItem("user", JSON.stringify(this.user));
     alert("annonce supprimée");
   }
    
