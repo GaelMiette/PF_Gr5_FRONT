@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
 
     console.log("success");
 
-    registered.isRecruiter = isRecruiter ? true : false;
+    registered.isRecruiter = isRecruiter;
     let toStore = JSON.stringify(registered);
     sessionStorage.setItem("user", toStore);
 
