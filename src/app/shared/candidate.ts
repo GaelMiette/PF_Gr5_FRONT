@@ -1,3 +1,5 @@
+import { Department } from "./department";
+
 export class Candidate {
     id = 0;
     nom = "";
@@ -9,5 +11,7 @@ export class Candidate {
     mail = ""; 
     mdp = ""; 
     isRecruiter = false;
+    listeAnnonces=[];
+    departement=new Department();
     version = 0;
 }

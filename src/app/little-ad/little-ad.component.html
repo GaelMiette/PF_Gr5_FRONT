@@ -15,9 +15,18 @@
         </div>
 
         <div *ngIf="user != null">
-          <div class="p-2 ml-auto col-2" *ngIf="user.isRecruiter==0 ; else modifsuppr">
-            <button (click)="candidater()" class="btn btn-outline-dark">POSTULER</button>
+
+          <div class="p-2 ml-auto col-2" *ngIf="user.isRecruiter==false ; else modifsuppr">
+            <div *ngIf="isCandidat==false ; else modifpostule">
+              <button (click)="candidater()" class="btn btn-outline-dark">POSTULER</button>
+            </div>
+            <ng-template #modifpostule>
+              <div class="p-2 ml-auto col-2">
+                <button (click)="retCandidature()" class="btn btn-outline-dark">RETIRER CANDIDATURE</button>
+              </div>
+            </ng-template>
           </div>
+
           <ng-template #modifsuppr>
             <div class="p-2 ml-auto col-2">
               <button (click)="modifier()" class="btn btn-outline-dark">MODIFIER</button>
