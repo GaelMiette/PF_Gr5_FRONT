@@ -14,20 +14,26 @@
                 <div class="input-group mb-2 wrapper">
                     
                     <div class="wrapped">
-                        <input type="text" class="form-control" [(ngModel)]="anounce.titre" placeholder="titre">
+                        <label for="titre">Titre</label>
+                        <input type="text" name="titre" class="form-control" [(ngModel)]="anounce.titre" placeholder="titre" required>
                     </div>
 
-                    <div class="wrapped"></div>
+                    <div class="wrapped">
+                        <label for="categorie">Categorie</label>
+                        <input type="text" name="categorie" class="form-control" [(ngModel)]="anounce.categorie" placeholder="categorie">
+                    </div>
 
                     <div class="wrapped">
-                        <input type="text" class="form-control" [(ngModel)]="anounce.date" placeholder="date">
+                        <label for="date">Date</label>
+                        <input type="text" name="date" class="form-control" [(ngModel)]="anounce.date" placeholder="date">
                     </div>
                     
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" [(ngModel)]="anounce.recruteur.entreprise" placeholder="entreprise">
+                <label for="entreprise">Entreprise</label>
+                <input type="text" name="entreprise" class="form-control" [(ngModel)]="anounce.recruteur.nom_Entreprise" placeholder="entreprise" disabled>
             </div>
 
             <div class="form-group">
@@ -35,24 +41,28 @@
                 <div class="input-group mb-2 wrapper ">
                     
                     <div class="wrapped center">
-                        <input type="text" class="form-control" [(ngModel)]="anounce.salaire" placeholder="salaire">
+                        <label for="salaire">Salaire</label>
+                        <input type="number" name="salaire" class="form-control" [(ngModel)]="anounce.salaire" placeholder="salaire">
                     </div>
 
-                    <div class="wrapped text-center">
-                        <div class="dropdown">
+                    <div class="form-group wrapped">
+                        <label for="type_contrat">Type de contrat</label>
+                        <select class="form-control" name="type_contrat" id="sel1" [(ngModel)]="anounce.type_Contrat">
+                          <option value="cdi">cdi</option>
+                          <option value="cdd">cdd</option>
+                        </select>
+                    </div>
 
-                            <button class="btn btn-light dropdown-toggle" data-toggle="dropdown">contrat</button>
-                            
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" >cdi</a>
-                                <a class="dropdown-item" >cdd</a>
-                            </div>
+                    <div class="form-group wrapped">
+                        <label for="localisation">Localisation</label>
+                        <select name="localisation" class="form-control" id="dept" [(ngModel)]="anounce.departement">
 
-                        </div>
-                    </div> 
+                            <option *ngFor="let x of departements"  value={{x.id}}>{{x.nom}}</option>
+                        </select>
+                    </div>
                     
                     <div class="form-check wrapped text-center">
-                        <input type="checkbox" class="form-check-input" id="materialUnchecked" [(ngModel)]="anounce.teletravail">
+                        <input type="checkbox" class="form-check-input" id="materialUnchecked" [(ngModel)]="anounce.tele_travail">
                         <label class="form-check-label" for="materialUnchecked">télétravail</label>
                     </div>
                     
@@ -60,7 +70,8 @@
             </div>
 
             <div class="form-group">
-                <textarea class="form-control" placeholder="description" [(ngModel)]="anounce.description"></textarea>
+                <label for="description">Description</label>
+                <textarea name="description" class="form-control" placeholder="description" [(ngModel)]="anounce.description"></textarea>
             </div>
 
             <div class="text-center">
