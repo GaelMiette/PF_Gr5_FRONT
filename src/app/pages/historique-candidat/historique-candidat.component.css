@@ -11,3 +11,6 @@ max-width: 40px;
     justify-content: center;
     align-items: center;
 }
+
+.list-group-item:hover{
+    box-shadow: 8px 8px 5px grey;}

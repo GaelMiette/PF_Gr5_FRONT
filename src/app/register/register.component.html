@@ -1,120 +1,135 @@
 <div class="container login-container" style="margin-bottom : 100px">
-    
-  <div class="container d-flex justify-content-center">  
-      <input type="checkbox" id="switch"
-          class="checkbox" (click)="toggle()"/>
-      <label for="switch" class="toggle"></label>
-  </div>
-     
-  <div class="row">
-     
-      <div id="form_can" class="col-md-6 login-form-1">
 
-          
-          <h3>Espace candidat</h3>
-          
-          <div class="form-group">
-              <label>Nom :</label>
-              <input type="text" class="form-control" placeholder="nom" [(ngModel)]="candidate.nom" name="name_candidate" />
-          </div>
-          <div class="form-group">
-              <label>Prénom :</label>
-              <input type="text" class="form-control" placeholder="prenom" [(ngModel)]="candidate.prenom" name="surname_candidate" />
-          </div>
-          <div class="form-group">
-              <label>Mot de passe :</label>
-              <input type="password" class="form-control" placeholder="password" [(ngModel)]="candidate.mdp" name="pwd_candidate" />
-          </div>
-          <div class="form-group">
-              <label>Mail :</label>
-              <input type="text" class="form-control" placeholder="mail" [(ngModel)]="candidate.mail" name="mail_candidate" />
-          </div>
-          <div class="form-group">
-              <label for="sel1">Profession:</label>
-              <select class="form-control" id="sel1" [(ngModel)]="candidate.profession">
-                <option value="">--Sélectionner--</option>
-                <option value="developpeur">Développeur</option>
-                <option value="admin_res">Admin Réseau</option>
-                <option value="admin_sys">Admin Système</option>
-                <option value="devops">DevOps</option>
-              </select>
-          </div>
+    <div class="container d-flex justify-content-center">
+        <input type="checkbox" id="switch" class="checkbox" (click)="toggle()" />
+        <label for="switch" class="toggle"></label>
+    </div>
+
+    <div class="row">
+
+        <div id="form_can" class="col-md-6 login-form-1">
+
+
+            <h3>Espace candidat</h3>
+
+            <div class="form-group">
+                <label>Nom :</label>
+                <input type="text" class="form-control" placeholder="nom" [(ngModel)]="candidate.nom"
+                    name="name_candidate" />
+            </div>
+            <div class="form-group">
+                <label>Prénom :</label>
+                <input type="text" class="form-control" placeholder="prenom" [(ngModel)]="candidate.prenom"
+                    name="surname_candidate" />
+            </div>
+            <div class="form-group">
+                <label>Mot de passe :</label>
+                <input type="password" class="form-control" placeholder="password" [(ngModel)]="candidate.mdp"
+                    name="pwd_candidate" />
+            </div>
+            <div class="form-group">
+                <label>Mail :</label>
+                <input type="text" class="form-control" placeholder="mail" [(ngModel)]="candidate.mail"
+                    name="mail_candidate" />
+            </div>
+            <div class="form-group">
+                <label for="sel1">Profession:</label>
+                <select class="form-control" id="sel1" [(ngModel)]="candidate.profession">
+                    <option value="">--Sélectionner--</option>
+                    <option value="developpeur">Développeur</option>
+                    <option value="admin_res">Admin Réseau</option>
+                    <option value="admin_sys">Admin Système</option>
+                    <option value="devops">DevOps</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label>Votre expérience :</label>
-              <input type="number" class="form-control" placeholder="années d'expérience" [(ngModel)]="candidate.anneesxp" name="exp_candidate" />
-          </div>
-          <div class="form-group">
-              <label>Age :</label>
-              <input type="number" class="form-control" placeholder="Age" [(ngModel)]="candidate.age" name="age_candidate" />
-          </div>
-          
-          <label>Département :</label><br>
-          <div class="form-check" *ngFor="let dept of departements">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" value="{{dept.id}}" [(ngModel)]="candidate.departement_id" name="optradio_c">{{dept.nom}} - {{dept.id}}
-            </label>
-          </div>
+                <input type="number" class="form-control" placeholder="années d'expérience"
+                    [(ngModel)]="candidate.anneesXP" name="exp_candidate" />
+            </div>
+            <div class="form-group">
+                <label>Age :</label>
+                <input type="number" class="form-control" placeholder="Age" [(ngModel)]="candidate.age"
+                    name="age_candidate" />
+            </div>
+
+            <label>Département :</label><br>
+            <div class="form-check" *ngFor="let dept of departements">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" value="{{dept.id}}"
+                        [(ngModel)]="candidate.departement_id" name="optradio_c">{{dept.id}} - {{dept.nom}}
+                </label>
+            </div>
 
 
-          <div class="form-group">
+            <div class="form-group">
 
-              <button (click)="register(false)" class="btn btn-outline-dark" style="margin-top:30px">S'inscrire</button>
-          </div>
+                <button (click)="register(false)" class="btn btn-outline-dark"
+                    style="margin-top:30px">S'inscrire</button>
+            </div>
 
-      </div>
+        </div>
 
-      <div id="form_rec" class="col-md-6 login-form-2">
+        <div id="form_rec" class="col-md-6 login-form-2">
 
-          <h3>Espace recruteur</h3>
-      
-          <div class="form-group">
-              <label>Nom de l'entreprise :</label>
-              <input type="text" class="form-control" placeholder="entreprise" [(ngModel)]="recruiter.nom_Entreprise" name="entreprise_recruiter" />
-          </div>
-          <div class="form-group">
-              <label>Logo :</label><br>
-              <p>(uniquement format .png ou .jpg)</p>
-              <input type="file" class="form-control" placeholder="logo" [(ngModel)]="recruiter.logo" name="logo_recruiter" 
-                      accept="image/png , image/jpg" />
-          </div>
+            <h3>Espace recruteur</h3>
+
+            <div class="form-group">
+                <label>Nom de l'entreprise :</label>
+                <input type="text" class="form-control" placeholder="entreprise" [(ngModel)]="recruiter.nom_Entreprise"
+                    name="entreprise_recruiter" />
+            </div>
+            <div class="form-group">
+                <label>Logo :</label><br>
+                <p>(uniquement format .png ou .jpg)</p>
+                <input type="file" class="form-control" placeholder="logo" [(ngModel)]="recruiter.logo"
+                    name="logo_recruiter" accept="image/png , image/jpg" />
+            </div>
 
 
-          <div class="form-group">
-              <label>Nom :</label>
-              <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="recruiter.nom" name="entreprise_recruiter" />
-          </div>
-          <div class="form-group">
-              <label>Prenom :</label>
-              <input type="text" class="form-control" placeholder="Prenom" [(ngModel)]="recruiter.prenom" name="entreprise_recruiter" />
-          </div>
-          <div class="form-group">
-              <label>Login :</label>
-              <input type="text" class="form-control" placeholder="Login" [(ngModel)]="recruiter.login" name="entreprise_recruiter" />
-          </div>
-          <div class="form-group">
-              <label>Mail :</label>
-              <input type="text" class="form-control" placeholder="mail" [(ngModel)]="recruiter.mail" name="mail_recruiter" />
-          </div>
-          <div class="form-group">
-              <label>Mot de passe :</label>
-              <input type="password" class="form-control" placeholder="mot de passe" [(ngModel)]="recruiter.mdp" name="pwd_recruiter" />
-          </div>
-          
-          <label>Département :</label><br>
-          <div class="form-check" *ngFor="let dept of departements">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" value="{{dept.id}}" [(ngModel)]="recruiter.departement_id" name="optradio_r">{{dept.nom}} - {{dept.id}}
-            </label>
-          </div>
+            <div class="form-group">
+                <label>Nom :</label>
+                <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="recruiter.nom"
+                    name="entreprise_recruiter" />
+            </div>
+            <div class="form-group">
+                <label>Prenom :</label>
+                <input type="text" class="form-control" placeholder="Prenom" [(ngModel)]="recruiter.prenom"
+                    name="entreprise_recruiter" />
+            </div>
+            <div class="form-group">
+                <label>Login :</label>
+                <input type="text" class="form-control" placeholder="Login" [(ngModel)]="recruiter.login"
+                    name="entreprise_recruiter" />
+            </div>
+            <div class="form-group">
+                <label>Mail :</label>
+                <input type="text" class="form-control" placeholder="mail" [(ngModel)]="recruiter.mail"
+                    name="mail_recruiter" />
+            </div>
+            <div class="form-group">
+                <label>Mot de passe :</label>
+                <input type="password" class="form-control" placeholder="mot de passe" [(ngModel)]="recruiter.mdp"
+                    name="pwd_recruiter" />
+            </div>
 
-            
+            <label>Département :</label><br>
+            <div class="form-check" *ngFor="let dept of departements">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" value="{{dept.id}}"
+                        [(ngModel)]="recruiter.departement_id" name="optradio_r">{{dept.id}} - {{dept.nom}}
+                </label>
+            </div>
 
-          <div class="form-group">
-              <button (click)="register(true)" class="btn btn-outline-dark" style="margin-top:30px">S'inscrire</button>
-          </div>
-          
-          
-      </div>
 
-  </div>
+
+            <div class="form-group">
+                <button (click)="register(true)" class="btn btn-outline-dark"
+                    style="margin-top:30px">S'inscrire</button>
+            </div>
+
+
+        </div>
+
+    </div>
 </div>

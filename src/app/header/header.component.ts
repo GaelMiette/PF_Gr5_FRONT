@@ -3,37 +3,32 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 
-  BASE_URL = "http://localhost:8080/danavalley/api";
+    BASE_URL = "http://localhost:8080/danavalley/api";
 
-  constructor(private route: Router, private http:HttpClient) { }
+    constructor(private route: Router, private http: HttpClient) { }
 
-  user = null
+    user = null
 
-  ngOnInit(): void {
-    
-    this.user = JSON.parse(sessionStorage.getItem("user"));
+    async ngOnInit() {
 
-    sessionStorage.setItem("BASE_URL", this.BASE_URL);
+        this.user = JSON.parse(sessionStorage.getItem("user"));
+        let departements = await this.http.get(this.BASE_URL + "/departements").toPromise();
 
-    this.http.get(this.BASE_URL + "/departements").subscribe(
-      response=>{
-        let toStore = JSON.stringify(response);
-        // console.log(response)
-        sessionStorage.setItem("departements", toStore);
-      }
-    )
-  }
+        sessionStorage.setItem("BASE_URL", this.BASE_URL);
+        sessionStorage.setItem("departements", JSON.stringify(departements));
 
-  logout(){
-    this.user = null;
-    sessionStorage.setItem("user", null);
-    this.route.navigate(["/home"]);
-  }
+    }
+
+    logout() {
+        this.user = null;
+        sessionStorage.setItem("user", null);
+        this.route.navigate(["/home"]);
+    }
 
 }

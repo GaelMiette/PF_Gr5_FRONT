@@ -19,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { AdsComponent } from './ads/ads.component';
 import { LittleAdComponent } from './little-ad/little-ad.component';
+import { AnnonceListeCandidatsComponent } from './pages/annonce-liste-candidats/annonce-liste-candidats.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { LittleAdComponent } from './little-ad/little-ad.component';
     HistoriqueRecruteurComponent,
     FormAnnonceComponent,
     UpdateAnnonceComponent,
+    AnnonceListeCandidatsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,25 +1,25 @@
 <div class="container">
-      
-    <h4 class="text-muted">Missions auxquelles j'ai postulé</h4> 
-    
-    <ul class="list-group">
-      
-      <a *ngFor="let annonce of liste" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-        
-        <div class="flex-column">
-          {{annonce.titre}}, {{annonce.recruteur.entreprise}}
-          <p><small>{{annonce.date}} - {{annonce.categorie}}</small></p>
-          <button class="btn btn-danger" (click)="delete_annonce()">retirer</button>
-        </div>
-        
-        <div class="image-parent">
-          <img src={{annonce.recruteur.logo}} class="img-fluid" alt="lay">
-        </div>
 
-      </a>
+    <h4 class="text-muted">Missions auxquelles j'ai postulé</h4>
+
+    <ul class="list-group">
+
+        <div *ngFor="let annonce of user.listeAnnonces"
+            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            style="margin-bottom:30px">
+
+            <div class="flex-column">
+                <p style="font-weight: bold">{{annonce.titre}} par {{annonce.recruteur.nom}}</p>
+                <p><small><span style="font-weight:bold">{{annonce.categorie}}</span> - {{annonce.date}}</small></p>
+                <button class="btn btn-danger" (click)="retCandidature(annonce.id)">RETIRER CANDIDATURE</button>
+            </div>
+
+            <div class="image-parent">
+                <img src="{{annonce.recruteur.logo || default_img_url}}" class="img-fluid" alt="logo du recruteur">
+            </div>
+
+        </div>
 
     </ul>
 
-
-    
 </div>

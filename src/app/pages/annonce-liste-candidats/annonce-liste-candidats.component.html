@@ -1,0 +1,20 @@
+<div class="container" style="margin-bottom: 100px;">
+
+    <!-- <div class="col-12 col-sm-8 col-lg-5"> -->
+
+    <h6 class="text-muted">Candidat pour l'annonce "{{annonce.titre}}"</h6>
+
+    <ul class="list-group">
+
+        <div *ngFor="let candidat of annonce.listeCandidats"
+            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+                <p><strong>{{candidat.nom}} {{candidat.prenom}}</strong> - {{candidat.profession}}</p>
+                <p>Expérience : {{candidat.anneesXP}} - Age : {{candidat.age}}</p>
+                <p>Département : {{candidat.departement.id}} - {{candidat.departement.nom}}</p>
+            </div>
+        </div>
+
+    </ul>
+
+</div>
