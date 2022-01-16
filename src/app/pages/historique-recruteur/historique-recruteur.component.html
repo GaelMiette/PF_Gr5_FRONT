@@ -11,9 +11,10 @@
         <div class="flex-column">
           <p style="font-weight: bold">{{annonce.titre}} </p>
           <p><small><span style="font-weight:bold">{{annonce.categorie}}</span> - {{annonce.date}}</small></p>
-          <button class="btn btn-primary" style="margin-right: 20px" (click)="go_to_details(annonce.id)">consulter</button>
-          <button class="btn btn-warning" style="margin-right: 20px" (click)="go_update(annonce.id)">modifier</button>
-          <button class="btn btn-danger" (click)="delete_annonce(annonce.id)">supprimer</button>
+          <button class="btn btn-primary" style="margin-right: 20px" (click)="go_to_details(annonce.id)">Details</button>
+          <button class="btn btn-primary" style="margin-right: 20px" (click)="go_to_liste_candidats(annonce.id)">Voir Candidats</button>
+          <button class="btn btn-warning" style="margin-right: 20px" (click)="go_update(annonce.id)">Modifier</button>
+          <button class="btn btn-danger" (click)="delete_annonce(annonce.id)">Supprimer</button>
         </div>
         
         <div class="image-parent">

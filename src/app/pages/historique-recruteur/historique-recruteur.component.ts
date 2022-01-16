@@ -30,6 +30,10 @@ export class HistoriqueRecruteurComponent implements OnInit {
     this.route.navigate(['/ad/'+id]);
   }
 
+  go_to_liste_candidats(id:number){
+    this.route.navigate(['/listeCandidats/'+id])
+  }
+
   go_update(id){
 
     this.route.navigate(['/upd_ad/'+id]);

@@ -11,6 +11,7 @@ import { AdsComponent } from './ads/ads.component';
 import { LittleAdComponent } from './little-ad/little-ad.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AnnonceListeCandidatsComponent } from './pages/annonce-liste-candidats/annonce-liste-candidats.component';
 
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: "full" },
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: "login" , component : LoginComponent},
   {path: "register" , component : RegisterComponent},
   {path: "ad/:id" , component : LittleAdComponent},
-  {path: "ads" , component : AdsComponent}
+  {path: "ads" , component : AdsComponent},
+  {path: "listeCandidats/:id" , component : AnnonceListeCandidatsComponent}
 ];
 
 @NgModule({
