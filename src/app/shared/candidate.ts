@@ -11,8 +11,6 @@ export class Candidate {
     mail = ""; 
     mdp = ""; 
     isRecruiter = false;
-    listeAnnonces=[];
-    departement=new Department();
     version = 0;
     departement:Department = new Department()
     listeAnnonces = [];
