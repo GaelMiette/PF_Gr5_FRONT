@@ -10,4 +10,5 @@ export class Candidate {
     mdp = ""; 
     isRecruiter = false;
     version = 0;
+    listeAnnonces=[];
 }
