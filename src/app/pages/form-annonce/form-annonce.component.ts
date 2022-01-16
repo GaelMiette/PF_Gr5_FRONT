@@ -15,6 +15,7 @@ export class FormAnnonceComponent implements OnInit {
   user = JSON.parse(sessionStorage.getItem("user"));
   message : String;
   departements = JSON.parse(sessionStorage.getItem("departements"));
+  BASE_URL = sessionStorage.getItem("BASE_URL");
 
   anounce = {
     titre: "",
@@ -45,12 +46,13 @@ export class FormAnnonceComponent implements OnInit {
         "Content-Type": "application/json"
       })
     }).
-      subscribe(response => {
-
+      subscribe(async response => {
         console.log("crud service post OK");
+        let toStore= await this.http.get(sessionStorage.getItem("BASE_URL")+"/recruteurs/"+this.user.id).toPromise();
+        sessionStorage.setItem("user", JSON.stringify(toStore));
+        alert("Annonce créée.");
         this.route.navigate(['/historique_recruteur']);
       },
-
         err => {
           console.log("crud service post KO")
         });
