@@ -5,7 +5,7 @@ export class Candidate {
     nom = "";
     prenom = "";
     profession = "";
-    anneesxp = 0;
+    anneesXP = 0;
     age = 0;
     departement_id = 22;
     mail = ""; 
@@ -14,4 +14,6 @@ export class Candidate {
     listeAnnonces=[];
     departement=new Department();
     version = 0;
+    departement:Department = new Department()
+    listeAnnonces = [];
 }
